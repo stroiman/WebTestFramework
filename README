@@ -11,6 +11,9 @@ different framework, e.g. WebDriver.
 The goal is to easily create a high level internal API so writing functional
 tests will be extremely easy.
 
+Another goal is to make it very easy to extend the framework in order to 
+implement specialized controls in private projects.
+
 
 How This Works
 ==============
@@ -51,10 +54,13 @@ public void CorrectLoginSetsCookie()
 {
     var driver = new WebDriver("http://localhost:1234/"); // Root url
     var page = new LoginPage(driver);
+	page.Open();
     page.UsernameField.Type("username");
     page.PasswordField.Type("password");
     page.SubmitButton.ClickAndWait();
     Assert.IsNotNull(driver.Cookies["auth_token"]);
+    // A more accurate test here would be one that actually validates that
+    // the auth_token cookie does indeed represent the user.
 }
 
 Of course, creating the actual driver could easily be shared among many
