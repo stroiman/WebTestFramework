@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTestFramework", "WebTestFramework\WebTestFramework.csproj", "{256D7BDC-AF94-4D0F-9BF9-8338EC91A174}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTestFramework.UnitTest", "WebTestFramework.UnitTest\WebTestFramework.UnitTest.csproj", "{864E79E3-5573-4C5E-8719-3D3E9522B6CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{256D7BDC-AF94-4D0F-9BF9-8338EC91A174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{256D7BDC-AF94-4D0F-9BF9-8338EC91A174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{256D7BDC-AF94-4D0F-9BF9-8338EC91A174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{256D7BDC-AF94-4D0F-9BF9-8338EC91A174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{864E79E3-5573-4C5E-8719-3D3E9522B6CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{864E79E3-5573-4C5E-8719-3D3E9522B6CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{864E79E3-5573-4C5E-8719-3D3E9522B6CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{864E79E3-5573-4C5E-8719-3D3E9522B6CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
