@@ -1,0 +1,69 @@
+WebTestFramework
+================
+
+This project is a framework for easily creating automated functional tests of 
+web applications.
+
+The project is currently a wrapper around the Selenium RC API, but the project
+is structured in such a way that it is easy to substitute Selenium RC with a 
+different framework, e.g. WebDriver.
+
+The goal is to easily create a high level internal API so writing functional
+tests will be extremely easy.
+
+
+How This Works
+==============
+
+The general concept is that for every page in your system, you create a 
+specialized class that inherits from the WebTestFramework.Page class. On this
+class, you add members for each control on your page that you wish to control
+in your functional tests. An example is this
+
+public class LoginPage : WebTestFramework.Page
+{
+    public readonly TextBox UsernameField;
+    public readonly TextBox PasswordField;
+    public readonly Button SubmitButton;
+
+    public LoginPage(IWebDriver driver) : base(driver) {
+        UsernameField = CreateTextBox("username"); 
+        PasswordField = CreateTextBox("password");
+        SubmitButton = CreateTextBox("submit");
+    }
+
+    protected override string Url {
+        get { return "/login"; }
+    }
+}
+
+So this class basically represents how your page is structured. The different
+create commands, CreateTextBox and CreateButton, take the ID of the actual form
+field. If you are writing your application using ASP.NET WebForms, I would
+highly recommend that you use the new ClientIDMode.Static that is introduced
+in .NET 4.0. This feature allows you to have complete control over the ID of
+form fields.
+
+Using this class in an actual test is pretty simple.
+
+[Test]
+public void CorrectLoginSetsCookie()
+{
+    var driver = new WebDriver("http://localhost:1234/"); // Root url
+    var page = new LoginPage(driver);
+    page.UsernameField.Type("username");
+    page.PasswordField.Type("password");
+    page.SubmitButton.ClickAndWait();
+    Assert.IsNotNull(driver.Cookies["auth_token"]);
+}
+
+Of course, creating the actual driver could easily be shared among many
+fixtures to avoid code duplication.
+
+This is basically how it works. IMHO this makes it a lot easier to write 
+functional tests that addressing the Selenium RC API directly in your
+functional tests
+
+Now I just need to migrate the add code ;)
+
+
