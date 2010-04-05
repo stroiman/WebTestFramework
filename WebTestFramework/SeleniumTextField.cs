@@ -19,7 +19,7 @@ namespace WebTestFramework
 		/// <param name="controlID">
 		/// The ID of the text field to control
 		/// </param>
-		public SeleniumTextField(ISelenium selenium, string controlID)
+		internal SeleniumTextField(ISelenium selenium, string controlID)
 		{
 			_selenium = selenium;
 			_controlID = controlID;

@@ -24,7 +24,8 @@ namespace WebTestFramework.UnitTest
 			const string value = "value";
 			var seleniumMock = new Mock<ISelenium>(MockBehavior.Strict);
 			seleniumMock.Setup(x => x.Type(_controlLocator, value));
-			var textBox = new SeleniumTextField(seleniumMock.Object, _controlID);
+			var driver = new SeleniumDriver(seleniumMock.Object);
+			var textBox = driver.CreateTextField(_controlID);
 
 			// Exercise
 			textBox.Type(value);
