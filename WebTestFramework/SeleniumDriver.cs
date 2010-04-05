@@ -5,7 +5,7 @@ namespace WebTestFramework
 	/// <summary>
 	/// A class that provides an abstraction layer on top of Selenium RC.
 	/// </summary>
-	public class SeleniumDriver
+	public class SeleniumDriver : IBrowserDriver
 	{
 		private readonly ISelenium _selenium;
 
@@ -22,13 +22,13 @@ namespace WebTestFramework
 		}
 
 		/// <summary>
-		/// Creates a <see cref="SeleniumTextField"/> instance that can be used
+		/// Creates a <see cref="ITextField"/> instance that can be used
 		/// to control a single text field on a web page form.
 		/// </summary>
 		/// <param name="id">
 		/// The ID of the text field on the form.
 		/// </param>
-		public SeleniumTextField CreateTextField(string id)
+		public ITextField CreateTextField(string id)
 		{
 			return new SeleniumTextField(_selenium, id);
 		}

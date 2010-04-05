@@ -5,7 +5,7 @@ namespace WebTestFramework
 	/// <summary>
 	/// A class that uses Selenium RC to control a text field on a web page form.
 	/// </summary>
-	public class SeleniumTextField
+	public class SeleniumTextField : ITextField
 	{
 		private readonly ISelenium _selenium;
 		private readonly string _controlID;
