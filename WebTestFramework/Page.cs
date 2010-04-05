@@ -9,7 +9,7 @@
 	/// <see cref="Page"/> class, with properties corresponding to the input
 	/// fields, buttons, etc. that you wish to control
 	/// </remarks>
-	public class Page
+	public abstract class Page
 	{
 		private readonly IBrowserDriver _driver;
 
@@ -20,7 +20,7 @@
 		/// A reference to th <see cref="IBrowserDriver"/> implementation used to 
 		/// control the browser.
 		/// </param>
-		public Page(IBrowserDriver driver)
+		protected Page(IBrowserDriver driver)
 		{
 			_driver = driver;
 		}
@@ -35,6 +35,23 @@
 		public ITextField CreateTextField(string id)
 		{
 			return _driver.CreateTextField(id);
+		}
+
+		/// <summary>
+		/// Template method for retrieving the relative URL of the page.
+		/// Specialized classes must override this function and supply the
+		/// relative URL where the actual page can be found.
+		/// </summary>
+		public abstract string GetUrl();
+
+		/// <summary>
+		/// Opens the page in the browser controlled by the 
+		/// <see cref="IBrowserDriver"/> implementation passed to the
+		/// <see cref="Page(IBrowserDriver)"/> constructor
+		/// </summary>
+		public void Open()
+		{
+			_driver.Open(GetUrl());
 		}
 	}
 }

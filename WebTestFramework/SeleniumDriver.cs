@@ -32,5 +32,10 @@ namespace WebTestFramework
 		{
 			return new SeleniumTextField(_selenium, id);
 		}
+
+		public void Open(string relativeUrl)
+		{
+			_selenium.Open(relativeUrl);
+		}
 	}
 }

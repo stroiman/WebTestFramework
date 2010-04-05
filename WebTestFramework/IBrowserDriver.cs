@@ -13,5 +13,7 @@ namespace WebTestFramework
 		/// The ID of the text field on the form.
 		/// </param>
 		ITextField CreateTextField(string id);
+
+		void Open(string relativeUrl);
 	}
 }
