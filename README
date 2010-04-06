@@ -14,6 +14,9 @@ tests will be extremely easy.
 Another goal is to make it very easy to extend the framework in order to 
 implement specialized controls in private projects.
 
+And last, this framework helps prevent fragile tests, tests that needs to be
+rewritten or modified whenever a change is implemented in the system.
+
 
 How This Works
 ==============
@@ -25,14 +28,14 @@ in your functional tests. An example is this
 
 public class LoginPage : WebTestFramework.Page
 {
-    public readonly TextBox UsernameField;
-    public readonly TextBox PasswordField;
-    public readonly Button SubmitButton;
+    public readonly ITextField UsernameField;
+    public readonly ITextField PasswordField;
+    public readonly IButton SubmitButton;
 
     public LoginPage(IWebDriver driver) : base(driver) {
         UsernameField = CreateTextBox("username"); 
         PasswordField = CreateTextBox("password");
-        SubmitButton = CreateTextBox("submit");
+        SubmitButton = CreateButton("submit");
     }
 
     protected override string Url {
@@ -54,7 +57,7 @@ public void CorrectLoginSetsCookie()
 {
     var driver = new WebDriver("http://localhost:1234/"); // Root url
     var page = new LoginPage(driver);
-	page.Open();
+    page.Open();
     page.UsernameField.Type("username");
     page.PasswordField.Type("password");
     page.SubmitButton.ClickAndWait();
@@ -68,8 +71,17 @@ fixtures to avoid code duplication.
 
 This is basically how it works. IMHO this makes it a lot easier to write 
 functional tests that addressing the Selenium RC API directly in your
-functional tests
+functional tests.
 
-Now I just need to migrate the add code ;)
+Another benefit of this approach is that if you modify how the page is 
+implemented in the system, the amount of changes that you need to implement
+in your test suite is minimal. For example, should you change the login
+functionality so clicking the button would case an AJAX postback instead
+of a real postback, all you need to do is change the LoginPage class so it
+creates a different IButton implementation that handles AJAX postbacks,
+and all the tests written for this page still works ;) That is one line
+of code that needs to be changed in the test suite :)
+
+Now I just need to migrate the code ;)
 
 
