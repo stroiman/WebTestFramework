@@ -10,6 +10,11 @@ namespace WebTestFramework
 	{
 		private readonly ISelenium _selenium;
 
+        /// <summary>
+        /// Gets or sets the default timeout in milliseconds for wait operations.
+        /// </summary>
+	    public static int DefaultTimeout = 5000;
+
 		/// <summary>
 		/// Creates a new <see cref="SeleniumDriver"/> instance.
 		/// </summary>
@@ -33,6 +38,18 @@ namespace WebTestFramework
 		{
 			return new SeleniumTextField(_selenium, id);
 		}
+
+        /// <summary>
+        /// Creates an <see cref="IButton"/> implementation that can be used to
+        /// control a single button on a web page.
+        /// </summary>
+        /// <param name="id">
+        /// The ID attribute of the button on the web page.
+        /// </param>
+        public IButton CreateButton(string id)
+        {
+            return new SeleniumButton(_selenium, id);
+        }
 
         /// <summary>
         /// Opens a url relative to the root url used to construct the selenium driver,

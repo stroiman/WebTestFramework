@@ -10,10 +10,26 @@ namespace WebTestFramework
 		/// to control a single text field on a web page form.
 		/// </summary>
 		/// <param name="id">
-		/// The ID of the text field on the form.
+        /// The ID attribute of the text field on the form.
 		/// </param>
 		ITextField CreateTextField(string id);
 
+        /// <summary>
+        /// Creates an <see cref="IButton"/> implementation that can be used to
+        /// control a single button on a web page.
+        /// </summary>
+        /// <param name="id">
+        /// The ID attribute of the button on the web page.
+        /// </param>
+        IButton CreateButton(string id);
+
+        /// <summary>
+        /// Opens a url in the browser. The url is relative to the root of the
+        /// web application being tested.
+        /// </summary>
+        /// <param name="relativeUrl">
+        /// The relative URL to open.
+        /// </param>
 		void Open(string relativeUrl);
 	}
 }

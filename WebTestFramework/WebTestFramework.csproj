@@ -45,9 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBrowserDriver.cs" />
+    <Compile Include="IButton.cs" />
     <Compile Include="ITextField.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeleniumButton.cs" />
     <Compile Include="SeleniumDriver.cs" />
     <Compile Include="SeleniumTextField.cs" />
   </ItemGroup>
