@@ -7,20 +7,40 @@ namespace WebTestFramework.UnitTest
 	[TestFixture]
 	public class SeleniumDriverTest
 	{
+        private Mock<ISelenium> _seleniumMock;
+        private SeleniumDriver _seleniumDriver;
+
+        [SetUp]
+        public void Setup()
+        {
+			_seleniumMock = new Mock<ISelenium>();
+			_seleniumDriver = new SeleniumDriver(_seleniumMock.Object);           
+        }
+
 		[Test]
 		public void Open()
 		{
 			// Setup
 			const string url = "url";
-			var seleniumMock = new Mock<ISelenium>();
-			var seleniumDriver = new SeleniumDriver(seleniumMock.Object);
-			seleniumMock.Setup(x => x.Open(url));
+			_seleniumMock.Setup(x => x.Open(url));
 
 			// Excercise
-			seleniumDriver.Open(url);
+			_seleniumDriver.Open(url);
 
 			// Validate
-			seleniumMock.VerifyAll();
+			_seleniumMock.VerifyAll();
 		}
+
+        [Test]
+        public void DisposeSeleniumDriverCallsStop()
+        {
+            _seleniumMock.Setup(x => x.Stop());
+
+            // Exercise
+            _seleniumDriver.Dispose();
+
+            // Validate
+            _seleniumMock.VerifyAll();
+        }
 	}
 }
