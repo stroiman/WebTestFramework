@@ -36,7 +36,7 @@ namespace WebTestFramework.UnitTest
 			// Setup
 			const string url = "/home";
 			var driverMock = new Mock<IBrowserDriver>(MockBehavior.Strict);
-			var pageMock = new Mock<Page>(driverMock.Object);
+			var pageMock = new Mock<Page<IBrowserDriver>>(driverMock.Object);
 			pageMock.Setup(x => x.GetUrl()).Returns(url);
 			driverMock.Setup(x => x.Open(url));
 

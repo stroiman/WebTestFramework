@@ -28,6 +28,12 @@ namespace WebTestFramework
 		}
 
 		/// <summary>
+		/// Gets a reference to the <see cref="ISelenium"/> implementation passed
+		/// during construction
+		/// </summary>
+		protected ISelenium Selenium { get { return _selenium; } }
+
+		/// <summary>
 		/// Creates a <see cref="ITextField"/> instance that can be used
 		/// to control a single text field on a web page form.
 		/// </summary>
@@ -61,22 +67,27 @@ namespace WebTestFramework
 			_selenium.Open(relativeUrl);
 		}
 
-        /// <summary>
-        /// Creates a new <see cref="SeleniumDriver"/> instance.
-        /// </summary>
-        /// <param name="seleniumServerHost">
-        /// 
-        /// </param>
-        /// <param name="rootUrl"></param>
-        /// <returns></returns>
-        public static SeleniumDriver Create(string seleniumServerHost, string rootUrl)
+		/// <summary>
+		/// Creates a new <see cref="SeleniumDriver"/> instance.
+		/// </summary>
+		/// <param name="seleniumServerHost">
+		/// The host that is running Selenium RC
+		/// </param>
+		/// <param name="rootUrl">
+		/// The url where the site to test exists.
+		/// </param>
+		/// <param name="browserString">
+		/// The browser string identifying which browser to start
+		/// </param>
+		/// <returns></returns>
+		public static SeleniumDriver Create(string seleniumServerHost, string rootUrl, string browserString = "*iexplore")
         {
             // This function is not covered by a test, because I don't know how to validate
             // that selenium is constructed correctly. Also starting selenium requires a
             // selenium RC server running, and I don't think that the work of creating a fake
             // selenium server listening to a custom port is worth the effort to test these 3
             // lines of code
-            var selenium = new DefaultSelenium(seleniumServerHost, 4444, "*iexplore", rootUrl);
+			var selenium = new DefaultSelenium(seleniumServerHost, 4444, browserString, rootUrl);
             selenium.Start();
             return new SeleniumDriver(selenium);
         }

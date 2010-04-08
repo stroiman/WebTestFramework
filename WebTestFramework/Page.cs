@@ -6,24 +6,33 @@
 	/// </summary>
 	/// <remarks>
 	/// For each page in the system, you should create a specialization of the
-	/// <see cref="Page"/> class, with properties corresponding to the input
+	/// <see cref="Page{T}"/> class, with properties corresponding to the input
 	/// fields, buttons, etc. that you wish to control
 	/// </remarks>
-	public abstract class Page
+	/// <typeparam name="TBrowserDriver">
+	/// Type type of <see cref="IBrowserDriver"/>
+	/// </typeparam>
+	public abstract class Page<TBrowserDriver> where TBrowserDriver : IBrowserDriver
 	{
-		private readonly IBrowserDriver _driver;
+		private readonly TBrowserDriver _driver;
 
 		/// <summary>
-		/// Creates a new <see cref="Page"/> instance
+		/// Creates a new <see cref="Page{T}"/> instance
 		/// </summary>
 		/// <param name="driver">
 		/// A reference to th <see cref="IBrowserDriver"/> implementation used to 
 		/// control the browser.
 		/// </param>
-		protected Page(IBrowserDriver driver)
+		protected Page(TBrowserDriver driver)
 		{
 			_driver = driver;
 		}
+
+		/// <summary>
+		/// Gets a reference to the <see cref="IBrowserDriver"/> specialization
+		/// used when constructing this instance.
+		/// </summary>
+		public TBrowserDriver Driver { get { return _driver; } }
 
 		/// <summary>
 		/// Creates an <see cref="ITextField"/> implementation that can be used
@@ -47,7 +56,7 @@
 		/// <summary>
 		/// Opens the page in the browser controlled by the 
 		/// <see cref="IBrowserDriver"/> implementation passed to the
-		/// <see cref="Page(IBrowserDriver)"/> constructor
+		/// <see cref="Page{T}(T)"/> constructor
 		/// </summary>
 		public void Open()
 		{
