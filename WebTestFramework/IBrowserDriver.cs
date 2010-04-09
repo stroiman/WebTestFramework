@@ -31,5 +31,16 @@ namespace WebTestFramework
         /// The relative URL to open.
         /// </param>
 		void Open(string relativeUrl);
+
+		/// <summary>
+		/// Gets the value of a cookie in the browser
+		/// </summary>
+		/// <param name="cookieName">
+		/// The name of the cookie.
+		/// </param>
+		/// <returns>
+		/// The value of the cookie, if it exists; otherwise <c>null</c>
+		/// </returns>
+		string GetCookie(string cookieName);
 	}
 }

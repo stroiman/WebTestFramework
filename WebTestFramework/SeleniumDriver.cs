@@ -68,6 +68,34 @@ namespace WebTestFramework
 		}
 
 		/// <summary>
+		/// Gets the value of a cookie in the browser
+		/// </summary>
+		/// <param name="cookieName">
+		/// The name of the cookie.
+		/// </param>
+		/// <returns>
+		/// The value of the cookie, if it exists; otherwise <c>null</c>
+		/// </returns>
+		public string GetCookie(string cookieName)
+		{
+			try
+			{
+				return _selenium.GetCookieByName(cookieName);
+			}
+			catch(SeleniumException)
+			{
+				// According to the interface documentation, Selenium will 
+				// throw an error, if the cookie doesn't exist.
+				// It can be difficult to know here however, if the exception
+				// is caused by the cookie not existing, or some other
+				// communication problem with Selenium RC or the browser.
+				// Here we treat it as though it is the cookie that doesn't
+				// exist
+				return null;
+			}
+		}
+
+		/// <summary>
 		/// Creates a new <see cref="SeleniumDriver"/> instance.
 		/// </summary>
 		/// <param name="seleniumServerHost">

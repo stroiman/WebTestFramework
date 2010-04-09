@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System;
+using Moq;
 using NUnit.Framework;
 using Selenium;
 
@@ -34,6 +35,7 @@ namespace WebTestFramework.UnitTest
         [Test]
         public void DisposeSeleniumDriverCallsStop()
         {
+			// Setup
             _seleniumMock.Setup(x => x.Stop());
 
             // Exercise
@@ -42,5 +44,36 @@ namespace WebTestFramework.UnitTest
             // Validate
             _seleniumMock.VerifyAll();
         }
+
+		[Test]
+		public void GetExistingCookie()
+		{
+			// Setup
+			var cookieName = "cookie";
+			var expected = "cookieValue";
+			_seleniumMock.Setup(x => x.GetCookieByName(cookieName)).Returns(expected);
+
+			// Exercise
+			var actual = _seleniumDriver.GetCookie(cookieName);
+
+			// Validate
+			Assert.That(actual, Is.EqualTo(expected));
+		}
+
+		[Test]
+		public void GetNonexistingCookie()
+		{
+			// Setup
+			var cookieName = "cookie";
+			_seleniumMock
+				.Setup(x => x.GetCookieByName(cookieName))
+				.Throws(new SeleniumException());
+
+			// Exercise
+			var actual = _seleniumDriver.GetCookie(cookieName);
+
+			// Validate
+			Assert.That(actual, Is.Null);
+		}
 	}
 }
