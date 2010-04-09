@@ -14,5 +14,10 @@ namespace WebTestFramework
 		/// The text to type in the text field
 		/// </param>
 		void Type(string value);
+
+		/// <summary>
+		/// Clears the content of the text field.
+		/// </summary>
+		void Clear();
 	}
 }

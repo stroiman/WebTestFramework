@@ -25,7 +25,7 @@ namespace WebTestFramework
         /// Clicks the button. This function returns immediately, any form
         /// posts that the click initiates will occur in the background.
         /// </summary>
-        public void Click()
+        public virtual void Click()
         {
             Selenium.Click(Locator);
         }
@@ -35,7 +35,7 @@ namespace WebTestFramework
         /// work with normal form posts. Asynchronous or AJAX form posts are
         /// not supported by this implementation.
         /// </summary>
-        public void ClickAndWait()
+		public virtual void ClickAndWait()
         {
             Click();
             Selenium.WaitForPageToLoad(SeleniumDriver.DefaultTimeout.ToString());

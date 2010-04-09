@@ -40,7 +40,7 @@ namespace WebTestFramework
 		/// <param name="id">
 		/// The ID of the text field on the form.
 		/// </param>
-		public ITextField CreateTextField(string id)
+		public virtual ITextField CreateTextField(string id)
 		{
 			return new SeleniumTextField(_selenium, id);
 		}
@@ -52,7 +52,7 @@ namespace WebTestFramework
         /// <param name="id">
         /// The ID attribute of the button on the web page.
         /// </param>
-        public IButton CreateButton(string id)
+		public virtual IButton CreateButton(string id)
         {
             return new SeleniumButton(_selenium, id);
         }

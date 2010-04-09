@@ -64,9 +64,17 @@ namespace WebTestFramework
 		/// <param name="value">
 		/// The text to type in the text field
 		/// </param>
-		public void Type(string value)
+		public virtual void Type(string value)
 		{
 			Selenium.Type(Locator, value);
+		}
+
+		/// <summary>
+		/// Clears the content of the text field.
+		/// </summary>
+		public virtual void Clear()
+		{
+			Type("");
 		}
 	}
 }

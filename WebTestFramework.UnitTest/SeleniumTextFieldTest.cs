@@ -9,12 +9,18 @@ namespace WebTestFramework.UnitTest
 	{
 		private string _controlID;
 		private string _controlLocator;
+		private Mock<ISelenium> _seleniumMock;
+		private SeleniumDriver _driver;
+		private ITextField _textBox;
 
 		[SetUp]
 		public void Setup()
 		{
 			_controlID = "textBoxID";
 			_controlLocator = "id=" + _controlID;
+			_seleniumMock = new Mock<ISelenium>(MockBehavior.Strict);
+			_driver = new SeleniumDriver(_seleniumMock.Object);
+			_textBox = _driver.CreateTextField(_controlID);
 		}
 
 		[Test]
@@ -22,16 +28,26 @@ namespace WebTestFramework.UnitTest
 		{
 			// Setup
 			const string value = "value";
-			var seleniumMock = new Mock<ISelenium>(MockBehavior.Strict);
-			seleniumMock.Setup(x => x.Type(_controlLocator, value));
-			var driver = new SeleniumDriver(seleniumMock.Object);
-			var textBox = driver.CreateTextField(_controlID);
+			_seleniumMock.Setup(x => x.Type(_controlLocator, value));
 
 			// Exercise
-			textBox.Type(value);
+			_textBox.Type(value);
 
 			// Validate
-			seleniumMock.VerifyAll();
+			_seleniumMock.VerifyAll();
+		}
+
+		[Test]
+		public void Clear()
+		{
+			// Setup
+			_seleniumMock.Setup(x => x.Type(_controlLocator, ""));
+
+			// Exercise
+			_textBox.Clear();
+
+			// Validate
+			_seleniumMock.VerifyAll();
 		}
 	}
 }
