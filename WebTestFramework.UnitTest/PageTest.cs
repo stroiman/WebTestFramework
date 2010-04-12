@@ -47,4 +47,47 @@ namespace WebTestFramework.UnitTest
 			driverMock.VerifyAll();
 		}
 	}
+
+	[TestFixture]
+	public class PageIsCurrentTest
+	{
+		private string _url;
+		private Mock<IBrowserDriver> _driverMock;
+		private Mock<Page> _pageMock;
+
+		[SetUp]
+		public void Setup()
+		{
+			_url = "/home";
+			_driverMock = new Mock<IBrowserDriver>(MockBehavior.Strict);
+			_pageMock = new Mock<Page>(_driverMock.Object);
+			_pageMock.Setup(x => x.GetUrl()).Returns(_url);
+		}
+
+		[Test]
+		public void PageIsCurrent()
+		{
+			// Setup
+			_driverMock.Setup(x => x.GetCurrentRelativeUrl()).Returns(_url);
+
+			// Exercise
+			var result = _pageMock.Object.IsCurrent;
+
+			// Validate
+			Assert.That(result, Is.True);
+		}
+
+		[Test]
+		public void PageIsNotCurrent()
+		{
+			// Setup
+			_driverMock.Setup(x => x.GetCurrentRelativeUrl()).Returns(_url + "x");
+
+			// Exercise
+			var result = _pageMock.Object.IsCurrent;
+
+			// Validate
+			Assert.That(result, Is.False);
+		}
+	}
 }

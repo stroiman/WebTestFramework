@@ -75,5 +75,18 @@ namespace WebTestFramework.UnitTest
 			// Validate
 			Assert.That(actual, Is.Null);
 		}
+
+		[Test]
+		public void GetCurrentRelativeUrlTest()
+		{
+			// Setup
+			_seleniumMock.Setup(x => x.GetLocation()).Returns("http://example.com/relative/path");
+
+			// Exercise
+			var result = _seleniumDriver.GetCurrentRelativeUrl();
+
+			// Validate
+			Assert.That(result, Is.EqualTo("/relative/path"));
+		}
 	}
 }

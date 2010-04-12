@@ -1,8 +1,11 @@
-﻿namespace WebTestFramework
+﻿using System;
+
+namespace WebTestFramework
 {
 	/// <summary>
-	/// Base class for creating specialized page control classes for controlling
-	/// and validating the behaviour of a specific page in the system.
+	/// Generic Base class for creating specialized page control classes for 
+	/// controlling and validating the behaviour of a specific page in the 
+	/// system
 	/// </summary>
 	/// <remarks>
 	/// For each page in the system, you should create a specialization of the
@@ -62,5 +65,36 @@
 		{
 			_driver.Open(GetUrl());
 		}
+
+		/// <summary>
+		/// Gets whether this page is the currently open page in the browser.
+		/// </summary>
+		public bool IsCurrent
+		{
+			get 
+			{
+				return _driver.GetCurrentRelativeUrl() == GetUrl();
+			}
+		}
+	}
+
+	/// <summary>
+	/// Base class for creating specialized page control classes for controlling
+	/// and validating the behaviour of a specific page in the system. This is
+	/// a concrete type of the generic <see cref="Page{T}"/> parameterized
+	/// </summary>
+	/// <remarks>
+	/// For each page in the system, you should create a specialization of the
+	/// <see cref="Page{T}"/> class, with properties corresponding to the input
+	/// fields, buttons, etc. that you wish to control
+	/// </remarks>
+	public abstract class Page : Page<IBrowserDriver>
+	{
+		/// <summary>
+		/// Creates a new <see cref="Page"/> instance
+		/// </summary>
+		/// <param name="driver"></param>
+		protected Page(IBrowserDriver driver) : base(driver)
+		{ }
 	}
 }

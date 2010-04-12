@@ -42,5 +42,13 @@ namespace WebTestFramework
 		/// The value of the cookie, if it exists; otherwise <c>null</c>
 		/// </returns>
 		string GetCookie(string cookieName);
+
+		/// <summary>
+		/// Gets the URL that is currently open in the browser.
+		/// </summary>
+		/// <returns>
+		/// A url relative to the root of the application
+		/// </returns>
+		string GetCurrentRelativeUrl();
 	}
 }

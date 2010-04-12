@@ -96,6 +96,19 @@ namespace WebTestFramework
 		}
 
 		/// <summary>
+		/// Gets the URL that is currently open in the browser.
+		/// </summary>
+		/// <returns>
+		/// A url relative to the root of the application
+		/// </returns>
+		public string GetCurrentRelativeUrl()
+		{
+			var currentLocation = _selenium.GetLocation();
+			var url = new Uri(currentLocation);
+			return url.PathAndQuery;
+		}
+
+		/// <summary>
 		/// Creates a new <see cref="SeleniumDriver"/> instance.
 		/// </summary>
 		/// <param name="seleniumServerHost">
