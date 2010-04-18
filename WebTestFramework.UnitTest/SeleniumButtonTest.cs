@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using System;
+using Moq;
 using NUnit.Framework;
 using Selenium;
 
@@ -50,4 +51,37 @@ namespace WebTestFramework.UnitTest
             _seleniumMock.VerifyAll();
         }
     }
+
+	[TestFixture]
+	public class CreateSeleniumButtonTest
+	{
+		private  Mock<ISelenium> _seleniumMock;
+		private  SeleniumDriver _driver;
+
+		[SetUp]
+		public void Setup()
+		{
+			_seleniumMock = new Mock<ISelenium>(MockBehavior.Strict);
+			_driver = new SeleniumDriver(_seleniumMock.Object);
+		}
+
+		private void AssertLocatorIs(IButton button, string expectedLocator)
+		{
+			if (expectedLocator == null) throw new ArgumentNullException("expectedLocator");
+			string actualLocator = null;
+			_seleniumMock
+				.Setup(x => x.Click(It.IsAny<string>()))
+				.Callback<string>(s => actualLocator = s);
+			button.Click();
+			Assert.That(actualLocator, Is.Not.Null, "Guard");
+			Assert.That(actualLocator, Is.EqualTo(expectedLocator));
+		}
+
+		[Test]
+		public void CreateFromIDDirect()
+		{
+			var button = _driver.CreateButton("locator");
+			AssertLocatorIs(button, "id=locator");
+		}
+	}
 }
