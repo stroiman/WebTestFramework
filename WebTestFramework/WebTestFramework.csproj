@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="IBrowserDriver.cs" />
     <Compile Include="IButton.cs" />
+    <Compile Include="ICreateControl.cs" />
     <Compile Include="ITextField.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

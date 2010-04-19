@@ -57,7 +57,16 @@ namespace WebTestFramework
             return new SeleniumButton(_selenium, id);
         }
 
-        /// <summary>
+		/// <summary>
+		/// Creates an <see cref="ICreateControl{T}"/> for creating an
+		/// <see cref="IButton"/> implementation
+		/// </summary>
+		public virtual ICreateControl<IButton> CreateButton()
+		{
+			return new SeleniumButtonFactory(_selenium);
+		}
+
+		/// <summary>
         /// Opens a url relative to the root url used to construct the selenium driver,
         /// or passed to the <see cref="Create"/> function
         /// </summary>
@@ -140,5 +149,32 @@ namespace WebTestFramework
 	    {
             _selenium.Stop();
 	    }
+	}
+
+	/// <summary>
+	/// A class that is used to create <see cref="SeleniumButton"/> instances.
+	/// This is the return value from the 
+	/// <see cref="SeleniumDriver.CreateButton()"/> function.
+	/// </summary>
+	public class SeleniumButtonFactory : ICreateControl<IButton>
+	{
+		private readonly ISelenium _selenium;
+
+		/// <summary>
+		/// Creates a new <see cref="SeleniumButtonFactory"/> instance
+		/// </summary>
+		/// <param name="selenium"></param>
+		public SeleniumButtonFactory(ISelenium selenium)
+		{
+			_selenium = selenium;
+		}
+
+		/// <summary>
+		/// Returns button for a specific ID.
+		/// </summary>
+		public IButton FromID(string id)
+		{
+			return new SeleniumButton(_selenium, id);
+		}
 	}
 }

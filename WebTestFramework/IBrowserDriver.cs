@@ -23,6 +23,12 @@ namespace WebTestFramework
         /// </param>
         IButton CreateButton(string id);
 
+		/// <summary>
+		/// Creates an <see cref="ICreateControl{T}"/> for creating an
+		/// <see cref="IButton"/> implementation
+		/// </summary>
+		ICreateControl<IButton> CreateButton();
+
         /// <summary>
         /// Opens a url in the browser. The url is relative to the root of the
         /// web application being tested.
