@@ -45,7 +45,6 @@ namespace WebTestFramework
 			return new SeleniumTextField(_selenium, id);
 		}
 
-        /// <summary>
         /// Creates an <see cref="IButton"/> implementation that can be used to
         /// control a single button on a web page.
         /// </summary>
@@ -67,6 +66,7 @@ namespace WebTestFramework
 		}
 
 		/// <summary>
+        /// <summary>
         /// Opens a url relative to the root url used to construct the selenium driver,
         /// or passed to the <see cref="Create"/> function
         /// </summary>
@@ -115,6 +115,45 @@ namespace WebTestFramework
 			var currentLocation = _selenium.GetLocation();
 			var url = new Uri(currentLocation);
 			return url.PathAndQuery;
+		}
+
+		/// <summary>
+		/// Deletes a cookie in the browser
+		/// </summary>		
+		public void DeleteCookie(string cookieName)
+		{
+			_selenium.DeleteCookie(cookieName, "path=/");
+		}
+
+		/// <summary>
+		/// Creates a cookie in the browser
+		/// </summary>
+		/// <param name="cookieName">
+		/// The name of the cookie
+		/// </param>
+		/// <param name="value">
+		/// The value of the cookie
+		/// </param>
+		public void CreateCookie(string cookieName, string value)
+		{
+			var nameValueString = string.Format(
+				"{0}={1}",
+				cookieName, value);
+			_selenium.CreateCookie(nameValueString, "path=/");
+		}
+
+		/// <summary>
+		/// Gets whether or not a specific text appears on the current page
+		/// </summary>
+		/// <param name="text">
+		/// The text to search for
+		/// </param>
+		/// <returns>
+		/// <c>true</c> if the text was found; otherwise <c>false</c>
+		/// </returns>
+		public bool IsTextPresent(string text)
+		{
+			return _selenium.IsTextPresent(text);
 		}
 
 		/// <summary>

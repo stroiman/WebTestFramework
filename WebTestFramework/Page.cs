@@ -73,8 +73,22 @@ namespace WebTestFramework
 		{
 			get 
 			{
-				return _driver.GetCurrentRelativeUrl() == GetUrl();
+				return string.Compare(_driver.GetCurrentRelativeUrl(), GetUrl(), true) == 0;
 			}
+		}
+
+		/// <summary>
+		/// Gets whether or not a specific text appears on the page.
+		/// </summary>
+		/// <param name="text">
+		/// The text to search for
+		/// </param>
+		/// <returns>
+		/// <c>true</c> if the text was found; otherwise <c>false</c>
+		/// </returns>
+		public bool ContainsText(string text)
+		{
+			return Driver.IsTextPresent(text);
 		}
 	}
 

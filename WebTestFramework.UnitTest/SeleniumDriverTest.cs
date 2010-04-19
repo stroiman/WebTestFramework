@@ -49,8 +49,8 @@ namespace WebTestFramework.UnitTest
 		public void GetExistingCookie()
 		{
 			// Setup
-			var cookieName = "cookie";
-			var expected = "cookieValue";
+			const string cookieName = "cookie";
+			const string expected = "cookieValue";
 			_seleniumMock.Setup(x => x.GetCookieByName(cookieName)).Returns(expected);
 
 			// Exercise
@@ -64,7 +64,7 @@ namespace WebTestFramework.UnitTest
 		public void GetNonexistingCookie()
 		{
 			// Setup
-			var cookieName = "cookie";
+			const string cookieName = "cookie";
 			_seleniumMock
 				.Setup(x => x.GetCookieByName(cookieName))
 				.Throws(new SeleniumException());
@@ -74,6 +74,20 @@ namespace WebTestFramework.UnitTest
 
 			// Validate
 			Assert.That(actual, Is.Null);
+		}
+
+		[Test]
+		public void DeleteCookie()
+		{
+			// Setup
+			const string cookieName = "cookie";
+			_seleniumMock.Setup(x => x.DeleteCookie(cookieName, "path=/"));
+
+			// Exercise
+			_seleniumDriver.DeleteCookie(cookieName);
+
+			// Validate
+			_seleniumMock.VerifyAll();
 		}
 
 		[Test]
@@ -87,6 +101,21 @@ namespace WebTestFramework.UnitTest
 
 			// Validate
 			Assert.That(result, Is.EqualTo("/relative/path"));
+		}
+
+		[Test]
+		public void CreateCookie()
+		{
+			// Setup
+			const string cookieName = "cookie";
+			const string cookieValue = "value";
+			_seleniumMock.Setup(x => x.CreateCookie(cookieName + "=" + cookieValue, "path=/"));
+
+			// Exercise
+			_seleniumDriver.CreateCookie(cookieName, cookieValue);
+
+			// Validate
+			_seleniumMock.VerifyAll();
 		}
 	}
 }
