@@ -42,9 +42,19 @@ namespace WebTestFramework
 		/// </param>
 		public virtual ITextField CreateTextField(string id)
 		{
-			return new SeleniumTextField(_selenium, id);
+			return CreateTextField().FromID(id);
 		}
 
+		/// <summary>
+		/// Creates an <see cref="ICreateControl{T}"/> for creating an
+		/// <see cref="ITextField"/> implementation
+		/// </summary>
+		public virtual ICreateControl<ITextField> CreateTextField()
+		{
+			return new SeleniumTextFieldFactory(_selenium);
+		}
+
+		/// <summary>
         /// Creates an <see cref="IButton"/> implementation that can be used to
         /// control a single button on a web page.
         /// </summary>
@@ -53,7 +63,7 @@ namespace WebTestFramework
         /// </param>
 		public virtual IButton CreateButton(string id)
         {
-            return new SeleniumButton(_selenium, id);
+			return CreateButton().FromID(id);
         }
 
 		/// <summary>
@@ -65,7 +75,6 @@ namespace WebTestFramework
 			return new SeleniumButtonFactory(_selenium);
 		}
 
-		/// <summary>
         /// <summary>
         /// Opens a url relative to the root url used to construct the selenium driver,
         /// or passed to the <see cref="Create"/> function
@@ -188,32 +197,5 @@ namespace WebTestFramework
 	    {
             _selenium.Stop();
 	    }
-	}
-
-	/// <summary>
-	/// A class that is used to create <see cref="SeleniumButton"/> instances.
-	/// This is the return value from the 
-	/// <see cref="SeleniumDriver.CreateButton()"/> function.
-	/// </summary>
-	public class SeleniumButtonFactory : ICreateControl<IButton>
-	{
-		private readonly ISelenium _selenium;
-
-		/// <summary>
-		/// Creates a new <see cref="SeleniumButtonFactory"/> instance
-		/// </summary>
-		/// <param name="selenium"></param>
-		public SeleniumButtonFactory(ISelenium selenium)
-		{
-			_selenium = selenium;
-		}
-
-		/// <summary>
-		/// Returns button for a specific ID.
-		/// </summary>
-		public IButton FromID(string id)
-		{
-			return new SeleniumButton(_selenium, id);
-		}
 	}
 }

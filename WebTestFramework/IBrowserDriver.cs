@@ -14,6 +14,13 @@ namespace WebTestFramework
 		/// </param>
 		ITextField CreateTextField(string id);
 
+
+		/// <summary>
+		/// Creates an <see cref="ICreateControl{T}"/> for creating an
+		/// <see cref="ITextField"/> implementation
+		/// </summary>
+		ICreateControl<ITextField> CreateTextField();
+
         /// <summary>
         /// Creates an <see cref="IButton"/> implementation that can be used to
         /// control a single button on a web page.
