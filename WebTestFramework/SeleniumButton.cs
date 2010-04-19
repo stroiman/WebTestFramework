@@ -13,11 +13,11 @@ namespace WebTestFramework
         /// <param name="selenium">
         /// A reference to the <see cref="ISelenium"/> implementation to use
         /// </param>
-        /// <param name="id">
-        /// The ID attribute of the button
+        /// <param name="locator">
+        /// The selenium locator for this button
         /// </param>
-        public SeleniumButton(ISelenium selenium, string id)
-            : base(selenium, id)
+        public SeleniumButton(ISelenium selenium, string locator)
+			: base(selenium, locator)
         {
         }
 

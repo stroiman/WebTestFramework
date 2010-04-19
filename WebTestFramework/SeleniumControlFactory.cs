@@ -22,7 +22,7 @@ namespace WebTestFramework
 		/// </summary>
 		public T FromID(string id)
 		{
-			return CreateControl(id);
+			return CreateControl("id=" + id);
 		}
 	}
 

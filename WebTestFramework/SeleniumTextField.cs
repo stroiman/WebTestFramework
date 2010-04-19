@@ -8,7 +8,7 @@ namespace WebTestFramework
     public class SeleniumControlBase
     {
         private readonly ISelenium _selenium;
-        private readonly string _id;        
+        private readonly string _locator;        
 
         /// <summary>
         /// Creates a new <see cref="SeleniumControlBase"/> instance.
@@ -16,13 +16,13 @@ namespace WebTestFramework
 		/// <param name="selenium">
 		/// A reference to the <see cref="ISelenium"/> implementation to use
 		/// </param>
-		/// <param name="id">
+		/// <param name="locator">
 		/// The ID attribute of the control
 		/// </param>
-		protected SeleniumControlBase(ISelenium selenium, string id)
+		protected SeleniumControlBase(ISelenium selenium, string locator)
         {
             _selenium = selenium;
-            _id = id;
+			_locator = locator;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace WebTestFramework
         /// <summary>
         /// Gets the selenium locator
         /// </summary>
-        protected string Locator { get { return "id=" + _id; } }
+        protected string Locator { get { return _locator; } }
     }
 
 
@@ -49,11 +49,11 @@ namespace WebTestFramework
 		/// <param name="selenium">
 		/// A reference to the <see cref="ISelenium"/> implementation to use
 		/// </param>
-		/// <param name="id">
-		/// The ID attribute of the text field to control
+		/// <param name="locator">
+		/// The selenium locator for this button
 		/// </param>
-		internal SeleniumTextField(ISelenium selenium, string id)
-            : base(selenium, id)
+		internal SeleniumTextField(ISelenium selenium, string locator)
+			: base(selenium, locator)
 		{
 		}
 
