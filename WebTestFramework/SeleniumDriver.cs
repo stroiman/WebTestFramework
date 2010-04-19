@@ -75,7 +75,7 @@ namespace WebTestFramework
 			return new SeleniumButtonFactory(_selenium);
 		}
 
-        /// <summary>
+		/// <summary>
         /// Opens a url relative to the root url used to construct the selenium driver,
         /// or passed to the <see cref="Create"/> function
         /// </summary>
