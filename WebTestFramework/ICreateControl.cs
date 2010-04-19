@@ -13,5 +13,14 @@
 		/// The ID of the element to control
 		/// </param>		
 		T FromID(string id);
+
+		/// <summary>
+		/// Creates an instance of <typeparamref name="T"/> for representing a
+		/// specific element that can be located by a specific CSS locator.
+		/// </summary>
+		/// <param name="css">
+		/// The CSS locator for the element.
+		/// </param>
+		T FromCSS(string css);
 	}
 }
