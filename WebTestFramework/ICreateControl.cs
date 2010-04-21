@@ -22,5 +22,14 @@
 		/// The CSS locator for the element.
 		/// </param>
 		T FromCSS(string css);
+
+		/// <summary>
+		/// Creates an instance of <typeparamref name="T"/> for representing a
+		/// specific element with a specific name attribute
+		/// </summary>
+		/// <param name="name">
+		/// The name attribute of the element
+		/// </param>
+		T FromName(string name);
 	}
 }

@@ -92,6 +92,13 @@ namespace WebTestFramework.UnitTest
 		}
 
 		[Test]
+		public void CreateFromName()
+		{
+			var textField = _driver.CreateTextField().FromName("locator");
+			AssertLocatorIs(textField, "name=locator");
+		}
+
+		[Test]
 		public void CreateFromCSS()
 		{
 			const string cssSelector = "li:last-child input[name='test']";

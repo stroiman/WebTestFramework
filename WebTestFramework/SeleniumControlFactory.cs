@@ -26,6 +26,11 @@ namespace WebTestFramework
 			return CreateControl("id=" + id);
 		}
 
+		public T FromName(string name)
+		{
+			return CreateControl("name=" + name);
+		}
+
 		/// <summary>
 		/// Creates a control from a CSS locator
 		/// </summary>
