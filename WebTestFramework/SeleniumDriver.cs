@@ -51,7 +51,7 @@ namespace WebTestFramework
 		/// </summary>
 		public virtual ICreateControl<ITextField> CreateTextField()
 		{
-			return new SeleniumTextFieldFactory(_selenium);
+			return new SeleniumDelegateControlFactory<ITextField>(CreateTextFieldControl);
 		}
 
 		/// <summary>
@@ -72,7 +72,7 @@ namespace WebTestFramework
 		/// </summary>
 		public virtual ICreateControl<IButton> CreateButton()
 		{
-			return new SeleniumButtonFactory(_selenium);
+			return new SeleniumDelegateControlFactory<IButton>(CreateButtonControl);
 		}
 
 		/// <summary>
@@ -190,7 +190,29 @@ namespace WebTestFramework
             return new SeleniumDriver(selenium);
         }
 
-        /// <summary>
+		#region Control factory functions
+
+		/// <summary>
+		/// The factory method used to create an <see cref="ITextField"/> 
+		/// control for a specific locator.
+		/// </summary>
+		protected virtual ITextField CreateTextFieldControl(string locator)
+		{
+			return new SeleniumTextField(_selenium, locator);
+		}
+
+		/// <summary>
+		/// The factory method used to create an <see cref="IButton"/> 
+		/// control for a specific locator.
+		/// </summary>
+		protected virtual IButton CreateButtonControl(string locator)
+		{
+			return new SeleniumButton(_selenium, locator);
+		}
+
+		#endregion
+
+		/// <summary>
         /// Disposes this instance. This function will stop the selenium driver.
         /// </summary>
 	    public void Dispose()

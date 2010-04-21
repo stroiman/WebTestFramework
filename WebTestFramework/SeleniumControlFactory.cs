@@ -1,4 +1,5 @@
-﻿using Selenium;
+﻿using System;
+using Selenium;
 
 namespace WebTestFramework
 {
@@ -35,55 +36,39 @@ namespace WebTestFramework
 	}
 
 	/// <summary>
-	/// A class that is used to create <see cref="SeleniumTextField"/> 
-	/// instances.  This is the return value from the 
-	/// <see cref="SeleniumDriver.CreateTextField()"/> function.
+	/// A specialized <see cref="SeleniumControlFactory{T}"/> that takes a
+	/// factory function as constructor parameter.
 	/// </summary>
-	public class SeleniumTextFieldFactory : SeleniumControlFactory<ITextField>
+	/// <typeparam name="T"></typeparam>
+	public class SeleniumDelegateControlFactory<T> : SeleniumControlFactory<T>
 	{
-		private readonly ISelenium _selenium;
+		private readonly Func<string, T> _createControlDelegate;
 
 		/// <summary>
-		/// Creates a new <see cref="SeleniumTextFieldFactory"/> instance
+		/// Creates a new <see cref="SeleniumDelegateControlFactory{T}"/> instance
 		/// </summary>
-		public SeleniumTextFieldFactory(ISelenium selenium)
+		/// <param name="createControlDelegate">
+		/// A delegate used to construct that actual control
+		/// </param>
+		public SeleniumDelegateControlFactory(Func<string, T> createControlDelegate)
 		{
-			_selenium = selenium;
+			if (createControlDelegate == null) throw new ArgumentNullException("createControlDelegate");
+			_createControlDelegate = createControlDelegate;
 		}
 
 		/// <summary>
-		/// Creates the actual <see cref="ITextField"/> to be used
+		/// Constructs the actual control by calling the delegate passed
+		/// to the constructor
 		/// </summary>
-		protected override ITextField CreateControl(string locator)
+		/// <param name="locator">
+		/// The locator to pass to the factory function
+		/// </param>
+		/// <returns>
+		/// The result of the factory function
+		/// </returns>
+		protected override T CreateControl(string locator)
 		{
-			return new SeleniumTextField(_selenium, locator);
-		}
-	}
-
-	/// <summary>
-	/// A class that is used to create <see cref="SeleniumButton"/> instances.
-	/// This is the return value from the 
-	/// <see cref="SeleniumDriver.CreateButton()"/> function.
-	/// </summary>
-	public class SeleniumButtonFactory : SeleniumControlFactory<IButton>
-	{
-		private readonly ISelenium _selenium;
-
-		/// <summary>
-		/// Creates a new <see cref="SeleniumButtonFactory"/> instance
-		/// </summary>
-		/// <param name="selenium"></param>
-		public SeleniumButtonFactory(ISelenium selenium)
-		{
-			_selenium = selenium;
-		}
-
-		/// <summary>
-		/// Creates the actual <see cref="IButton"/> to be used
-		/// </summary>
-		protected override IButton CreateControl(string locator)
-		{
-			return new SeleniumButton(_selenium, locator);
+			return _createControlDelegate(locator);
 		}
 	}
 }
