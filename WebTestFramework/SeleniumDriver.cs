@@ -80,7 +80,8 @@ namespace WebTestFramework
 		{
 			try
 			{
-				return _selenium.GetCookieByName(cookieName);
+				var result = _selenium.GetCookieByName(cookieName);
+				return result == "undefined" ? null : result;
 			}
 			catch(SeleniumException)
 			{
@@ -106,6 +107,31 @@ namespace WebTestFramework
 			var currentLocation = _selenium.GetLocation();
 			var url = new Uri(currentLocation);
 			return url.PathAndQuery;
+		}
+
+		/// <summary>
+		/// Deletes a cookie in the browser
+		/// </summary>		
+		public void DeleteCookie(string cookieName)
+		{
+			_selenium.DeleteCookie(cookieName, "path=/");
+		}
+
+		/// <summary>
+		/// Creates a cookie in the browser
+		/// </summary>
+		/// <param name="cookieName">
+		/// The name of the cookie
+		/// </param>
+		/// <param name="value">
+		/// The value of the cookie
+		/// </param>
+		public void CreateCookie(string cookieName, string value)
+		{
+			var nameValueString = string.Format(
+				"{0}={1}",
+				cookieName, value);
+			_selenium.CreateCookie(nameValueString, "path=/");
 		}
 
 		/// <summary>

@@ -50,5 +50,35 @@ namespace WebTestFramework
 		/// A url relative to the root of the application
 		/// </returns>
 		string GetCurrentRelativeUrl();
+
+		/// <summary>
+		/// Deletes a cookie in the browser
+		/// </summary>		
+		/// <param name="cookieName">
+		/// The name of the cookie to delete
+		/// </param>
+		void DeleteCookie(string cookieName);
+
+		/// <summary>
+		/// Creates a cookie in the browser
+		/// </summary>
+		/// <param name="cookieName">
+		/// The name of the cookie
+		/// </param>
+		/// <param name="value">
+		/// The value of the cookie
+		/// </param>
+		void CreateCookie(string cookieName, string value);
+
+		/// <summary>
+		/// Gets whether or not a specific text appears on the current page
+		/// </summary>
+		/// <param name="text">
+		/// The text to search for
+		/// </param>
+		/// <returns>
+		/// <c>true</c> if the text was found; otherwise <c>false</c>
+		/// </returns>
+		bool IsTextPresent(string text);
 	}
 }
