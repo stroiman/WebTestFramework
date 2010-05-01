@@ -109,6 +109,20 @@ namespace WebTestFramework
 		}
 
 		/// <summary>
+		/// Gets whether or not a specific text appears on the current page
+		/// </summary>
+		/// <param name="text">
+		/// The text to search for
+		/// </param>
+		/// <returns>
+		/// <c>true</c> if the text was found; otherwise <c>false</c>
+		/// </returns>
+		public bool IsTextPresent(string text)
+		{
+			return _selenium.IsTextPresent(text);
+		}
+
+		/// <summary>
 		/// Creates a new <see cref="SeleniumDriver"/> instance.
 		/// </summary>
 		/// <param name="seleniumServerHost">
