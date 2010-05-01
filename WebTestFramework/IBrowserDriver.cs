@@ -14,6 +14,13 @@ namespace WebTestFramework
 		/// </param>
 		ITextField CreateTextField(string id);
 
+
+		/// <summary>
+		/// Creates an <see cref="ICreateControl{T}"/> for creating an
+		/// <see cref="ITextField"/> implementation
+		/// </summary>
+		ICreateControl<ITextField> CreateTextField();
+
         /// <summary>
         /// Creates an <see cref="IButton"/> implementation that can be used to
         /// control a single button on a web page.
@@ -22,6 +29,12 @@ namespace WebTestFramework
         /// The ID attribute of the button on the web page.
         /// </param>
         IButton CreateButton(string id);
+
+		/// <summary>
+		/// Creates an <see cref="ICreateControl{T}"/> for creating an
+		/// <see cref="IButton"/> implementation
+		/// </summary>
+		ICreateControl<IButton> CreateButton();
 
         /// <summary>
         /// Opens a url in the browser. The url is relative to the root of the

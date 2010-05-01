@@ -15,7 +15,7 @@
         /// </summary>
         /// <remarks>
         /// The default implementation returned by 
-        /// <see cref="IBrowserDriver.CreateButton"/> only supports waiting
+        /// <see cref="IBrowserDriver.CreateButton()"/> only supports waiting
         /// during normal form posts, not asynchronous or AJAX posts. 
         /// Specialized implementations could be created however that works
         /// with these types of posts. This can allow you to change the 

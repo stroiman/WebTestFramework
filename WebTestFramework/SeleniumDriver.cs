@@ -42,10 +42,19 @@ namespace WebTestFramework
 		/// </param>
 		public virtual ITextField CreateTextField(string id)
 		{
-			return new SeleniumTextField(_selenium, id);
+			return CreateTextField().FromID(id);
 		}
 
-        /// <summary>
+		/// <summary>
+		/// Creates an <see cref="ICreateControl{T}"/> for creating an
+		/// <see cref="ITextField"/> implementation
+		/// </summary>
+		public virtual ICreateControl<ITextField> CreateTextField()
+		{
+			return new SeleniumDelegateControlFactory<ITextField>(CreateTextFieldControl);
+		}
+
+		/// <summary>
         /// Creates an <see cref="IButton"/> implementation that can be used to
         /// control a single button on a web page.
         /// </summary>
@@ -54,10 +63,19 @@ namespace WebTestFramework
         /// </param>
 		public virtual IButton CreateButton(string id)
         {
-            return new SeleniumButton(_selenium, id);
+			return CreateButton().FromID(id);
         }
 
-        /// <summary>
+		/// <summary>
+		/// Creates an <see cref="ICreateControl{T}"/> for creating an
+		/// <see cref="IButton"/> implementation
+		/// </summary>
+		public virtual ICreateControl<IButton> CreateButton()
+		{
+			return new SeleniumDelegateControlFactory<IButton>(CreateButtonControl);
+		}
+
+		/// <summary>
         /// Opens a url relative to the root url used to construct the selenium driver,
         /// or passed to the <see cref="Create"/> function
         /// </summary>
@@ -173,7 +191,29 @@ namespace WebTestFramework
             return new SeleniumDriver(selenium);
         }
 
-        /// <summary>
+		#region Control factory functions
+
+		/// <summary>
+		/// The factory method used to create an <see cref="ITextField"/> 
+		/// control for a specific locator.
+		/// </summary>
+		protected virtual ITextField CreateTextFieldControl(string locator)
+		{
+			return new SeleniumTextField(_selenium, locator);
+		}
+
+		/// <summary>
+		/// The factory method used to create an <see cref="IButton"/> 
+		/// control for a specific locator.
+		/// </summary>
+		protected virtual IButton CreateButtonControl(string locator)
+		{
+			return new SeleniumButton(_selenium, locator);
+		}
+
+		#endregion
+
+		/// <summary>
         /// Disposes this instance. This function will stop the selenium driver.
         /// </summary>
 	    public void Dispose()
