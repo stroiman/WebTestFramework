@@ -73,7 +73,7 @@ namespace WebTestFramework
 		{
 			get 
 			{
-				return _driver.GetCurrentRelativeUrl() == GetUrl();
+				return string.Compare(_driver.GetCurrentRelativeUrl(), GetUrl(), true) == 0;
 			}
 		}
 	}
