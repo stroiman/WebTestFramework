@@ -1,5 +1,4 @@
 ﻿using System;
-using Selenium;
 
 namespace WebTestFramework
 {
@@ -26,10 +25,15 @@ namespace WebTestFramework
 			return CreateControl("id=" + id);
 		}
 
+		public T FromName(string name)
+		{
+			return CreateControl("name=" + name);
+		}
+
 		/// <summary>
 		/// Creates a control from a CSS locator
 		/// </summary>
-		public T FromCSS(string cssLocator)
+		public T FromCss(string cssLocator)
 		{
 			return CreateControl("css=" + cssLocator);
 		}
