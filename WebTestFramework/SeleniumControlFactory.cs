@@ -25,6 +25,11 @@ namespace WebTestFramework
 			return CreateControl("id=" + id);
 		}
 
+		/// <summary>
+		/// Creates a control from the element name
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
 		public T FromName(string name)
 		{
 			return CreateControl("name=" + name);
