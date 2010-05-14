@@ -55,6 +55,15 @@ namespace WebTestFramework
 		}
 
 		/// <summary>
+		/// Creates an <see cref="ICreateControl{T}"/> for creating an
+		/// <see cref="IImage"/> implementation
+		/// </summary>
+		public virtual ICreateControl<IImage> CreateImage()
+		{
+			return new SeleniumDelegateControlFactory<IImage>(CreateImageControl);
+		}
+
+		/// <summary>
         /// Creates an <see cref="IButton"/> implementation that can be used to
         /// control a single button on a web page.
         /// </summary>
@@ -209,6 +218,15 @@ namespace WebTestFramework
 		protected virtual IButton CreateButtonControl(string locator)
 		{
 			return new SeleniumButton(_selenium, locator);
+		}
+
+		/// <summary>
+		/// The factory method used to create an <see cref="IImage"/>
+		/// control for a specific locator.
+		/// </summary>
+		protected virtual IImage CreateImageControl(string locator)
+		{
+			return new SeleniumImage(_selenium, locator);
 		}
 
 		#endregion
