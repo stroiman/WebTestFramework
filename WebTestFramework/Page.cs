@@ -15,10 +15,8 @@ namespace WebTestFramework
 	/// <typeparam name="TBrowserDriver">
 	/// Type type of <see cref="IBrowserDriver"/>
 	/// </typeparam>
-	public abstract class Page<TBrowserDriver> where TBrowserDriver : IBrowserDriver
+	public abstract class Page<TBrowserDriver> : UserControl<TBrowserDriver> where TBrowserDriver : IBrowserDriver
 	{
-		private readonly TBrowserDriver _driver;
-
 		/// <summary>
 		/// Creates a new <see cref="Page{T}"/> instance
 		/// </summary>
@@ -26,16 +24,8 @@ namespace WebTestFramework
 		/// A reference to th <see cref="IBrowserDriver"/> implementation used to 
 		/// control the browser.
 		/// </param>
-		protected Page(TBrowserDriver driver)
-		{
-			_driver = driver;
-		}
-
-		/// <summary>
-		/// Gets a reference to the <see cref="IBrowserDriver"/> specialization
-		/// used when constructing this instance.
-		/// </summary>
-		public TBrowserDriver Driver { get { return _driver; } }
+		protected Page(TBrowserDriver driver) : base(driver)
+		{}
 
 		/// <summary>
 		/// Creates an <see cref="ITextField"/> implementation that can be used
@@ -46,7 +36,7 @@ namespace WebTestFramework
 		/// </param>
 		public ITextField CreateTextField(string id)
 		{
-			return _driver.CreateTextField(id);
+			return Driver.CreateTextField(id);
 		}
 
 		/// <summary>
@@ -63,7 +53,7 @@ namespace WebTestFramework
 		/// </summary>
 		public void Open()
 		{
-			_driver.Open(GetUrl());
+			Driver.Open(GetUrl());
 		}
 
 		/// <summary>
@@ -73,7 +63,7 @@ namespace WebTestFramework
 		{
 			get 
 			{
-				return string.Compare(_driver.GetCurrentRelativeUrl(), GetUrl(), true) == 0;
+				return string.Compare(Driver.GetCurrentRelativeUrl(), GetUrl(), true) == 0;
 			}
 		}
 

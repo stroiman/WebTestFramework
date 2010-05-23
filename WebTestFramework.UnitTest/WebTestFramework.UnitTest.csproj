@@ -60,6 +60,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TestSpecificPage.cs" />
+    <Compile Include="UserControlTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebTestFramework\WebTestFramework.csproj">
