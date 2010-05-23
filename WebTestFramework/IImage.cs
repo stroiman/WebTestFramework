@@ -6,8 +6,15 @@
 	public interface IImage
 	{
 		/// <summary>
-		/// Gets the HREF attribute from img-tag on the web page.
+		/// Gets the src attribute from img-tag on the web page.
 		/// </summary>
-		string Href { get; }
+		string Src { get; }
+
+		/// <summary>
+		/// Gets image src local to the web server, e.g. if the absolute
+		/// url is "http://example.com/image.jpg", this property will return
+		/// "/image.jpg"
+		/// </summary>
+		string LocalSrc { get; }
 	}
 }

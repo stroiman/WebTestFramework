@@ -30,12 +30,21 @@ namespace WebTestFramework
 		/// <summary>
 		/// Gets the HREF attribute from img-tag on the web page.
 		/// </summary>
-		public string Href
+		public string Src
 		{
-			get 
-			{ 
-				var locator = _locator + "@href";
+			get
+			{
+				var locator = _locator + "@src";
 				return _selenium.GetAttribute(locator);
+			}
+		}
+
+		public string LocalSrc
+		{
+			get
+			{
+				var url = new Uri(Src);
+				return url.AbsolutePath;
 			}
 		}
 	}

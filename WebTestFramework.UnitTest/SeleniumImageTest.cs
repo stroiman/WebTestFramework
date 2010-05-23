@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 namespace WebTestFramework.UnitTest
 {
@@ -14,14 +14,30 @@ namespace WebTestFramework.UnitTest
 		}
 
 		[Test]
-		public void GetHref()
+		public void GetSrc()
 		{
 			// Setup
 			const string expected = "/images/image.jpg";
-			SeleniumMock.Setup(x => x.GetAttribute(ControlLocator + "@href")).Returns(expected);
+			SeleniumMock.Setup(x => x.GetAttribute(ControlLocator + "@src")).Returns(expected);
 
 			// Exercise
-			var actual = _image.Href;
+			var actual = _image.Src;
+
+			// Validate
+			Assert.That(actual, Is.EqualTo(expected));
+		}
+
+		[Test]
+		public void GetLocalSrc()
+		{
+			// Setup
+			const string expected = "/images/image.jpg";
+			const string absoluteSrc = "http://example.com" + expected;
+			SeleniumMock.Setup(x => x.GetAttribute(ControlLocator + "@src")).Returns(
+				absoluteSrc);
+
+			// Exercise
+			var actual = _image.LocalSrc;
 
 			// Validate
 			Assert.That(actual, Is.EqualTo(expected));
