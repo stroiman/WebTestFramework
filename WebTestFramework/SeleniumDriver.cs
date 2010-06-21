@@ -31,7 +31,7 @@ namespace WebTestFramework
 		/// Gets a reference to the <see cref="ISelenium"/> implementation passed
 		/// during construction
 		/// </summary>
-		protected ISelenium Selenium { get { return _selenium; } }
+		public ISelenium Selenium { get { return _selenium; } }
 
 		/// <summary>
 		/// Creates a <see cref="ITextField"/> instance that can be used
@@ -175,6 +175,11 @@ namespace WebTestFramework
 			return _selenium.IsTextPresent(text);
 		}
 
+		public IContainerController<T> CreateArray<T>(string xpathExpression,Func<ICollectionElementDriver, T> createElementFunction)
+		{
+			return new SeleniumContainerController<T>(this, xpathExpression, createElementFunction);
+		}
+
 		/// <summary>
 		/// Creates a new <see cref="SeleniumDriver"/> instance.
 		/// </summary>
@@ -206,7 +211,7 @@ namespace WebTestFramework
 		/// The factory method used to create an <see cref="ITextField"/> 
 		/// control for a specific locator.
 		/// </summary>
-		protected virtual ITextField CreateTextFieldControl(string locator)
+		internal protected virtual ITextField CreateTextFieldControl(string locator)
 		{
 			return new SeleniumTextField(_selenium, locator);
 		}
@@ -215,16 +220,21 @@ namespace WebTestFramework
 		/// The factory method used to create an <see cref="IButton"/> 
 		/// control for a specific locator.
 		/// </summary>
-		protected virtual IButton CreateButtonControl(string locator)
+		internal protected virtual IButton CreateButtonControl(string locator)
 		{
 			return new SeleniumButton(_selenium, locator);
+		}
+
+		internal protected virtual IRadioButton CreateRadioButtonControl(string locator)
+		{
+			return new SeleniumRadioButton(_selenium, locator);
 		}
 
 		/// <summary>
 		/// The factory method used to create an <see cref="IImage"/>
 		/// control for a specific locator.
 		/// </summary>
-		protected virtual IImage CreateImageControl(string locator)
+		internal protected virtual IImage CreateImageControl(string locator)
 		{
 			return new SeleniumImage(_selenium, locator);
 		}

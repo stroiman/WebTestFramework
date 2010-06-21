@@ -1,4 +1,5 @@
-﻿using Selenium;
+﻿using System;
+using Selenium;
 
 namespace WebTestFramework
 {
@@ -76,5 +77,10 @@ namespace WebTestFramework
 		{
 			Type("");
 		}
+
+    	public string Text
+    	{
+			get { return Selenium.GetValue(Locator); }
+    	}
 	}
 }

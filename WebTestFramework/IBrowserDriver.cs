@@ -1,3 +1,5 @@
+using System;
+
 namespace WebTestFramework
 {
 	/// <summary>
@@ -99,5 +101,26 @@ namespace WebTestFramework
 		/// <c>true</c> if the text was found; otherwise <c>false</c>
 		/// </returns>
 		bool IsTextPresent(string text);
+		
+		/// <summary>
+		/// Creates an <see cref="IContainerController{T}"/> instance for controlling
+		/// containers, ore more accurately container items, i.e. the individual elements in
+		/// a control with an, at compile time, unknown number of elements
+		/// </summary>
+		/// <typeparam name="T">
+		/// The type of class that implements the controller behaviour for each individual
+		/// container element
+		/// </typeparam>
+		/// <param name="xpathExpression">
+		/// An xpath that identifies an element in the collection. This must be a form, where
+		/// the implementation can append an indexer. E.g. if the container is an unordered list,
+		/// then the xpath for controlling the list items should be "//ul[@id='id of ul if applicable']/li"
+		/// </param>
+		/// <param name="createElementFunction">
+		/// A function that will be able to create the actual controller for each individual element,
+		/// given an <see cref="ICollectionElementDriver"/> implementation that it can use to create the
+		/// individual elements.
+		/// </param>
+		IContainerController<T> CreateArray<T>(string xpathExpression, Func<ICollectionElementDriver, T> createElementFunction);
 	}
 }

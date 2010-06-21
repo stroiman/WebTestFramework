@@ -19,5 +19,10 @@ namespace WebTestFramework
 		/// Clears the content of the text field.
 		/// </summary>
 		void Clear();
+
+		/// <summary>
+		/// Gets the text that is currently entered into the text field.
+		/// </summary>
+		string Text { get; }
 	}
 }
