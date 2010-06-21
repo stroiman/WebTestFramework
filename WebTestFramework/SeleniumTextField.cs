@@ -3,16 +3,16 @@ using Selenium;
 
 namespace WebTestFramework
 {
-    /// <summary>
-    /// Base class for selenium controller classes
-    /// </summary>
-    public class SeleniumControlBase
-    {
-        private readonly ISelenium _selenium;
-        private readonly string _locator;        
+	/// <summary>
+	/// Base class for selenium controller classes
+	/// </summary>
+	public class SeleniumControlBase
+	{
+		private readonly ISelenium _selenium;
+		private readonly string _locator;
 
-        /// <summary>
-        /// Creates a new <see cref="SeleniumControlBase"/> instance.
+		/// <summary>
+		/// Creates a new <see cref="SeleniumControlBase"/> instance.
 		/// </summary>
 		/// <param name="selenium">
 		/// A reference to the <see cref="ISelenium"/> implementation to use
@@ -21,30 +21,30 @@ namespace WebTestFramework
 		/// The ID attribute of the control
 		/// </param>
 		protected SeleniumControlBase(ISelenium selenium, string locator)
-        {
-            _selenium = selenium;
+		{
+			_selenium = selenium;
 			_locator = locator;
-        }
+		}
 
-        /// <summary>
-        /// Gets a reference to the <see cref="ISelenium"/> instance 
-        /// implementing the Selenium RC
-        /// </summary>
-        protected ISelenium Selenium { get { return _selenium; } }
+		/// <summary>
+		/// Gets a reference to the <see cref="ISelenium"/> instance 
+		/// implementing the Selenium RC
+		/// </summary>
+		protected ISelenium Selenium { get { return _selenium; } }
 
-        /// <summary>
-        /// Gets the selenium locator
-        /// </summary>
-        protected string Locator { get { return _locator; } }
-    }
+		/// <summary>
+		/// Gets the selenium locator
+		/// </summary>
+		protected string Locator { get { return _locator; } }
+	}
 
 
-    /// <summary>
+	/// <summary>
 	/// A class that uses Selenium RC to control a text field on a web page form.
 	/// </summary>
 	public class SeleniumTextField : SeleniumControlBase, ITextField
 	{
-        /// <summary>
+		/// <summary>
 		/// Creates a new <see cref="SeleniumTextField"/> instance.
 		/// </summary>
 		/// <param name="selenium">
@@ -58,7 +58,7 @@ namespace WebTestFramework
 		{
 		}
 
-        /// <summary>
+		/// <summary>
 		/// Types text in the text field. If text already exists in the field, it
 		/// will be cleared.
 		/// </summary>
@@ -78,9 +78,12 @@ namespace WebTestFramework
 			Type("");
 		}
 
-    	public string Text
-    	{
+		/// <summary>
+		/// Gets the text that is currently typed in the text field
+		/// </summary>
+		public string Text
+		{
 			get { return Selenium.GetValue(Locator); }
-    	}
+		}
 	}
 }

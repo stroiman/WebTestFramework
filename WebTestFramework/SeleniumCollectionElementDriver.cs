@@ -43,6 +43,15 @@ namespace WebTestFramework
 			return _seleniumDriver.CreateButtonControl(GetLocator(localXPath));
 		}
 
+		/// <summary>
+		/// Creates a controller for a specific radio button inside a collection element
+		/// </summary>
+		/// <param name="localXPath">
+		/// The xpath to identify the element, local to the container element xpath.
+		/// </param>
+		/// <returns>
+		/// An <see cref="IRadioButton"/> implementation that can be used to control this radio button
+		/// </returns>
 		public IRadioButton CreateRadioButton(string localXPath)
 		{
 			return _seleniumDriver.CreateRadioButtonControl(GetLocator(localXPath));

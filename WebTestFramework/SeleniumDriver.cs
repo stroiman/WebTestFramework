@@ -181,6 +181,24 @@ namespace WebTestFramework
 		}
 
 		/// <summary>
+		/// Creates an <see cref="IContainerController{T}"/> for controlling arrays of similar elements,
+		/// e.g lists or table rows.
+		/// </summary>
+		/// <typeparam name="T">
+		/// The type of controller that is used to control each individual element.
+		/// </typeparam>
+		/// <param name="xpathExpression">
+		/// x-path expression used to identify each element.
+		/// </param>
+		/// <param name="createElementFunction">
+		/// A function that will be able to create an instance of <typeparamref name="T"/> for a element in the list.
+		/// </param>
+		public IContainerController<T> CreateArray<T>(string xpathExpression,Func<ICollectionElementDriver, T> createElementFunction)
+		{
+			return new SeleniumContainerController<T>(this, xpathExpression, createElementFunction);
+		}
+
+		/// <summary>
 		/// Creates a new <see cref="SeleniumDriver"/> instance.
 		/// </summary>
 		/// <param name="seleniumServerHost">
@@ -225,6 +243,15 @@ namespace WebTestFramework
 			return new SeleniumButton(_selenium, locator);
 		}
 
+		internal protected virtual IRadioButton CreateRadioButtonControl(string locator)
+		{
+			return new SeleniumRadioButton(_selenium, locator);
+		}
+
+		/// <summary>
+		/// The factory method used to create an <see cref="IRadioButton"/>
+		/// control for a specific locator.
+		/// </summary>
 		internal protected virtual IRadioButton CreateRadioButtonControl(string locator)
 		{
 			return new SeleniumRadioButton(_selenium, locator);

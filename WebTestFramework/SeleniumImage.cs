@@ -28,7 +28,7 @@ namespace WebTestFramework
 		}
 
 		/// <summary>
-		/// Gets the HREF attribute from img-tag on the web page.
+		/// Gets the Src attribute from img-tag on the web page.
 		/// </summary>
 		public string Src
 		{
@@ -39,6 +39,11 @@ namespace WebTestFramework
 			}
 		}
 
+		/// <summary>
+		/// Gets the url local to the site. E.g. if the url for the image is
+		/// http://example.com/abc/test.gif, then this property will return
+		/// /abc/test.gif
+		/// </summary>
 		public string LocalSrc
 		{
 			get
