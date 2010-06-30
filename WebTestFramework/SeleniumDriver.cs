@@ -175,11 +175,6 @@ namespace WebTestFramework
 			return _selenium.IsTextPresent(text);
 		}
 
-		public IContainerController<T> CreateArray<T>(string xpathExpression,Func<ICollectionElementDriver, T> createElementFunction)
-		{
-			return new SeleniumContainerController<T>(this, xpathExpression, createElementFunction);
-		}
-
 		/// <summary>
 		/// Creates an <see cref="IContainerController{T}"/> for controlling arrays of similar elements,
 		/// e.g lists or table rows.
@@ -241,11 +236,6 @@ namespace WebTestFramework
 		internal protected virtual IButton CreateButtonControl(string locator)
 		{
 			return new SeleniumButton(_selenium, locator);
-		}
-
-		internal protected virtual IRadioButton CreateRadioButtonControl(string locator)
-		{
-			return new SeleniumRadioButton(_selenium, locator);
 		}
 
 		/// <summary>
