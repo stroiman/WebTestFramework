@@ -5,6 +5,23 @@ using System.Text;
 
 namespace WebTestFramework.UnitTest
 {
+	public class PageWithImages : Page
+	{
+		public readonly IImage ImageWithAbsolutePath;
+		public readonly IImage ImageWithRelativePath;
+
+		public PageWithImages(IBrowserDriver driver) : base(driver)
+		{
+			ImageWithAbsolutePath = driver.CreateImage().FromID("imageWithAbsolutePath");
+			ImageWithRelativePath = driver.CreateImage().FromID("imageWithRelativePath");
+		}
+
+		public override string GetUrl()
+		{
+			return "/PageWithImages.aspx";
+		}
+	}
+
 	public class TestPage1 : Page
 	{
 		public TestPage1(IBrowserDriver driver) : base(driver)
