@@ -1,93 +1,40 @@
-﻿using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace WebTestFramework.UnitTest
 {
 	[TestFixture]
-	public class PageTest
+	public class PageTest : TestBase
 	{
-		private string _id;
+		private TestPage1 _page;
 
 		[SetUp]
 		public void Setup()
 		{
-			_id = "textFieldID";
+			_page = new TestPage1(Driver);
 		}
 
 		[Test]
-		public void CreateTextField()
+		public void PageIsCurrentAfterBeingOpened()
 		{
-			// Setup
-			var driverMock = new Mock<IBrowserDriver>();
-			var dummyTextField = new Mock<ITextField>().Object;
-			driverMock.Setup(x => x.CreateTextField(_id)).Returns(dummyTextField);
-			var page = new TestSpecificPage(driverMock.Object);
-
 			// Exercise
-			var actual = page.CreateTextField(_id);
+			_page.Open();
 
 			// Validate
-			Assert.That(actual, Is.SameAs(dummyTextField));
+			Assert.That(_page.IsCurrent);
 		}
 
 		[Test]
-		public void OpenPage()
+		public void PageIsCurrentAfterRedirect()
 		{
 			// Setup
-			const string url = "/home";
-			var driverMock = new Mock<IBrowserDriver>(MockBehavior.Strict);
-			var pageMock = new Mock<Page<IBrowserDriver>>(driverMock.Object);
-			pageMock.Setup(x => x.GetUrl()).Returns(url);
-			driverMock.Setup(x => x.Open(url));
+			var redirectPage = new RedirectToPage1(Driver);
 
 			// Exercise
-			pageMock.Object.Open();
+			redirectPage.Open();
 
 			// Validate
-			driverMock.VerifyAll();
-		}
-	}
-
-	[TestFixture]
-	public class PageIsCurrentTest
-	{
-		private string _url;
-		private Mock<IBrowserDriver> _driverMock;
-		private Mock<Page> _pageMock;
-
-		[SetUp]
-		public void Setup()
-		{
-			_url = "/home";
-			_driverMock = new Mock<IBrowserDriver>(MockBehavior.Strict);
-			_pageMock = new Mock<Page>(_driverMock.Object);
-			_pageMock.Setup(x => x.GetUrl()).Returns(_url);
-		}
-
-		[Test]
-		public void PageIsCurrent()
-		{
-			// Setup
-			_driverMock.Setup(x => x.GetCurrentRelativeUrl()).Returns(_url);
-
-			// Exercise
-			var result = _pageMock.Object.IsCurrent;
-
-			// Validate
-			Assert.That(result, Is.True);
-		}
-
-		[Test]
-		public void PageIsNotCurrent()
-		{
-			// Setup
-			_driverMock.Setup(x => x.GetCurrentRelativeUrl()).Returns(_url + "x");
-
-			// Exercise
-			var result = _pageMock.Object.IsCurrent;
-
-			// Validate
-			Assert.That(result, Is.False);
+			Assert.That(_page.IsCurrent);
+			Assert.That(redirectPage.IsCurrent, Is.False);
 		}
 	}
 }

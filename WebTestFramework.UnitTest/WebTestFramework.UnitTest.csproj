@@ -59,6 +59,8 @@
     <Compile Include="SeleniumTextFieldTest.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TestBase.cs" />
+    <Compile Include="TestPage1.cs" />
     <Compile Include="TestSpecificPage.cs" />
     <Compile Include="UserControlTest.cs" />
   </ItemGroup>
