@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using Selenium;
+using WebTestFramework.Selenium;
 
 namespace WebTestFramework.UnitTest
 {

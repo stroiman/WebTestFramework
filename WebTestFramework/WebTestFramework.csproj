@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="htmlunit-2.7">
+      <HintPath>..\lib\htmlunit-2.7.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlUnit\HtmlUnitDriver.cs" />
     <Compile Include="IBrowserDriver.cs" />
     <Compile Include="IButton.cs" />
     <Compile Include="IContainerController.cs" />
@@ -53,14 +57,14 @@
     <Compile Include="ITextField.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeleniumButton.cs" />
-    <Compile Include="SeleniumCollectionElementDriver.cs" />
-    <Compile Include="SeleniumContainerController.cs" />
-    <Compile Include="SeleniumControlFactory.cs" />
-    <Compile Include="SeleniumDriver.cs" />
-    <Compile Include="SeleniumImage.cs" />
-    <Compile Include="SeleniumRadioButton.cs" />
-    <Compile Include="SeleniumTextField.cs" />
+    <Compile Include="Selenium\SeleniumButton.cs" />
+    <Compile Include="Selenium\SeleniumCollectionElementDriver.cs" />
+    <Compile Include="Selenium\SeleniumContainerController.cs" />
+    <Compile Include="Selenium\SeleniumControlFactory.cs" />
+    <Compile Include="Selenium\SeleniumDriver.cs" />
+    <Compile Include="Selenium\SeleniumImage.cs" />
+    <Compile Include="Selenium\SeleniumRadioButton.cs" />
+    <Compile Include="Selenium\SeleniumTextField.cs" />
     <Compile Include="UserControl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
