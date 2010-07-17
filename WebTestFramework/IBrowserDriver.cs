@@ -5,7 +5,7 @@ namespace WebTestFramework
 	/// <summary>
 	/// Interface for a class that controls the browser
 	/// </summary>
-	public interface IBrowserDriver
+	public interface IBrowserDriver : IDisposable
 	{
 		/// <summary>
 		/// Creates an <see cref="ITextField"/> implementation that can be used
