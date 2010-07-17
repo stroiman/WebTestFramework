@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div>
 		<asp:TextBox runat="server" ID="TextField" />
-		<asp:Label runat="server" ID="TextFieldOutput" />
+		<asp:TextBox runat="server" ID="TextFieldOutput" />
 		<asp:Button runat="server" ID="UpdateButton" OnClick="UpdateButtonClick" />
 		<br />
     </div>

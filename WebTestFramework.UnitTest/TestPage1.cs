@@ -24,8 +24,15 @@ namespace WebTestFramework.UnitTest
 
 	public class TestPage1 : Page
 	{
+		public readonly ITextField InputField;
+		public readonly ITextField OutputField;
+		public readonly IButton Button;
+
 		public TestPage1(IBrowserDriver driver) : base(driver)
 		{
+			InputField = driver.CreateTextField().FromID("TextField");
+			OutputField = driver.CreateTextField().FromID("TextFieldOutput");
+			Button = driver.CreateButton().FromID("UpdateButton");
 		}
 
 		public override string GetUrl()

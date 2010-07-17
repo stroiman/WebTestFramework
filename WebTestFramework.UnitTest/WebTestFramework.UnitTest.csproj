@@ -56,7 +56,7 @@
     <Compile Include="SeleniumButtonTest.cs" />
     <Compile Include="SeleniumControlTest.cs" />
     <Compile Include="SeleniumDriverTest.cs" />
-    <Compile Include="SeleniumTextFieldTest.cs">
+    <Compile Include="TextFieldTest.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TestBase.cs" />
