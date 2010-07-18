@@ -50,6 +50,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CookieTestPage.aspx" />
     <Content Include="PageWithImages.aspx" />
     <Content Include="RedirectToPage1.aspx" />
     <Content Include="TestPage1.aspx" />
@@ -62,6 +63,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CookieTestPage.aspx.cs">
+      <DependentUpon>CookieTestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CookieTestPage.aspx.designer.cs">
+      <DependentUpon>CookieTestPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PageWithImages.aspx.cs">
       <DependentUpon>PageWithImages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

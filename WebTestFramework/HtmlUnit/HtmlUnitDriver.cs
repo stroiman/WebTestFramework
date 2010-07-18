@@ -1,6 +1,7 @@
 ﻿using System;
 using com.gargoylesoftware.htmlunit;
 using com.gargoylesoftware.htmlunit.html;
+using com.gargoylesoftware.htmlunit.util;
 
 namespace WebTestFramework.HtmlUnit
 {
@@ -30,7 +31,7 @@ namespace WebTestFramework.HtmlUnit
 
 		internal HtmlPage CurrentPage { get { return _currentPage; } }
 
-			public ITextField CreateTextField(string id)
+		public ITextField CreateTextField(string id)
 		{
 			throw new NotImplementedException();
 		}
@@ -47,7 +48,7 @@ namespace WebTestFramework.HtmlUnit
 
 		public ICreateControl<IButton> CreateButton()
 		{
-			return new ButtonFactory();
+			return new HtmlUnitButtonFactory(this);
 		}
 
 		public ICreateControl<IImage> CreateImage()
@@ -65,7 +66,7 @@ namespace WebTestFramework.HtmlUnit
 
 		public string GetCookie(string cookieName)
 		{
-			throw new NotImplementedException();
+			return _htmlUnit.getCookieManager().getCookie(cookieName).getValue();
 		}
 
 		public string GetCurrentRelativeUrl()
@@ -80,12 +81,16 @@ namespace WebTestFramework.HtmlUnit
 
 		public void DeleteCookie(string cookieName)
 		{
-			throw new NotImplementedException();
+			CreateCookie(cookieName, "");
 		}
 
 		public void CreateCookie(string cookieName, string value)
 		{
-			throw new NotImplementedException();
+			var cookies = _htmlUnit.getCookieManager();
+			var uri = new Uri(_rootUrl);
+			var domain = uri.Host;
+			var cookie = new Cookie(domain, cookieName, value, "/", 120, false);
+			cookies.addCookie(cookie);
 		}
 
 		public bool IsTextPresent(string text)
@@ -101,24 +106,6 @@ namespace WebTestFramework.HtmlUnit
 		public void Dispose()
 		{
 			// This class doesn't need disposing
-		}
-	}
-
-	public class ButtonFactory : ICreateControl<IButton>
-	{
-		public IButton FromID(string id)
-		{
-			return null;
-		}
-
-		public IButton FromCss(string css)
-		{
-			throw new NotImplementedException();
-		}
-
-		public IButton FromName(string name)
-		{
-			throw new NotImplementedException();
 		}
 	}
 }

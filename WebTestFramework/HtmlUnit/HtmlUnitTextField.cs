@@ -29,7 +29,7 @@ namespace WebTestFramework.HtmlUnit
 
 		public string Text
 		{
-			get { throw new NotImplementedException(); }
+			get { return TextField.getValueAttribute(); }
 		}
 	}
 }
