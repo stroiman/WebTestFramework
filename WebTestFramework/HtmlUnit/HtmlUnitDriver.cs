@@ -25,6 +25,7 @@ namespace WebTestFramework.HtmlUnit
 		{
 			_rootUrl = rootUrl;
 			_htmlUnit = new WebClient();
+			_htmlUnit.setThrowExceptionOnFailingStatusCode(false);
 		}
 
 		internal WebClient WebClient { get { return _htmlUnit; } }
