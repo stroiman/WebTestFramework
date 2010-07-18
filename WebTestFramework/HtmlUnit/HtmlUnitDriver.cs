@@ -28,9 +28,9 @@ namespace WebTestFramework.HtmlUnit
 			_htmlUnit.setThrowExceptionOnFailingStatusCode(false);
 		}
 
-		internal WebClient WebClient { get { return _htmlUnit; } }
+		internal protected WebClient WebClient { get { return _htmlUnit; } }
 
-		internal HtmlPage CurrentPage { get { return _currentPage; } }
+		internal protected HtmlPage CurrentPage { get { return _currentPage; } }
 
 		public ITextField CreateTextField(string id)
 		{

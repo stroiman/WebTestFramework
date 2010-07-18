@@ -70,6 +70,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlUnit\HtmlUnitButton.cs" />
+    <Compile Include="HtmlUnit\HtmlUnitButtonFactory.cs" />
     <Compile Include="HtmlUnit\HtmlUnitDriver.cs" />
     <Compile Include="HtmlUnit\HtmlUnitTextField.cs" />
     <Compile Include="HtmlUnit\TextFieldFactory.cs" />
