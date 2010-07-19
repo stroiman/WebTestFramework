@@ -14,8 +14,12 @@ namespace WebTestFramework.HtmlUnit
 			_driver = driver;
 		}
 
-		private HtmlInput TextField { get 
-		{ return (HtmlInput)_driver.CurrentPage.getElementById(_id); } }
+		private HtmlInput TextField
+		{
+			get {
+				var page = (HtmlPage)_driver.WebClient.getCurrentWindow().getEnclosedPage();
+				return (HtmlInput) page.getElementById(_id); }
+		}
 
 		public void Type(string value)
 		{
