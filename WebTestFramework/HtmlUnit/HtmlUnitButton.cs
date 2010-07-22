@@ -13,12 +13,11 @@ namespace WebTestFramework.HtmlUnit
 			_id = id;
 		}
 
-		private HtmlSubmitInput Button
+		private HtmlElement Button
 		{
 			get
 			{
-				var button = _driver.CurrentPage.getElementById(_id);
-				return (HtmlSubmitInput)button;
+				return _driver.CurrentPage.getElementById(_id);
 			}
 		}
 
