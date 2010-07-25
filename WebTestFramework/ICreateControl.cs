@@ -31,5 +31,14 @@
 		/// The name attribute of the element
 		/// </param>
 		T FromName(string name);
+
+		/// <summary>
+		/// Creates an instance of <typeparamref name="T"/> for representing a
+		/// specific element with a specific xpath attribute
+		/// </summary>
+		/// <param name="xpath">
+		/// The xpath to search for the specific element
+		/// </param>
+		T FromXPath(string xpath);
 	}
 }

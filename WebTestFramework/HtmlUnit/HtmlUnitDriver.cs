@@ -30,21 +30,17 @@ namespace WebTestFramework.HtmlUnit
 
 		internal protected WebClient WebClient { get { return _htmlUnit; } }
 
-		internal protected HtmlPage CurrentPage { get { return _currentPage; } }
-
-		public ITextField CreateTextField(string id)
+		internal protected HtmlPage CurrentPage
 		{
-			throw new NotImplementedException();
+			get
+			{
+				return (HtmlPage)WebClient.getCurrentWindow().getEnclosedPage();
+			}
 		}
 
 		public ICreateControl<ITextField> CreateTextField()
 		{
 			return new TextFieldFactory(this);
-		}
-
-		public IButton CreateButton(string id)
-		{
-			throw new NotImplementedException();
 		}
 
 		public ICreateControl<IButton> CreateButton()

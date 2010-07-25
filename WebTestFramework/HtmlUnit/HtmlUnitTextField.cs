@@ -5,20 +5,19 @@ namespace WebTestFramework.HtmlUnit
 {
 	internal class HtmlUnitTextField : ITextField
 	{
-		private HtmlUnitDriver _driver;
-		private string _id;
+		private readonly Func<HtmlElement> _getElementFunc;
 
-		public HtmlUnitTextField(HtmlUnitDriver driver, string id)
+		public HtmlUnitTextField(Func<HtmlElement> getElementFunc)
 		{
-			_id = id;
-			_driver = driver;
+			_getElementFunc = getElementFunc;
 		}
 
 		private HtmlInput TextField
 		{
-			get {
-				var page = (HtmlPage)_driver.WebClient.getCurrentWindow().getEnclosedPage();
-				return (HtmlInput) page.getElementById(_id); }
+			get 
+			{
+				return (HtmlInput)_getElementFunc();
+			}
 		}
 
 		public void Type(string value)

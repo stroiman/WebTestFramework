@@ -70,6 +70,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrowserDriverExtensions.cs" />
+    <Compile Include="HtmlUnit\HtmlElementFactory.cs" />
     <Compile Include="HtmlUnit\HtmlUnitButton.cs" />
     <Compile Include="HtmlUnit\HtmlUnitButtonFactory.cs" />
     <Compile Include="HtmlUnit\HtmlUnitDriver.cs" />

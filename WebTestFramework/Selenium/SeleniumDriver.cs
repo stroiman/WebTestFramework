@@ -34,18 +34,6 @@ namespace WebTestFramework.Selenium
 		public ISelenium Selenium { get { return _selenium; } }
 
 		/// <summary>
-		/// Creates a <see cref="ITextField"/> instance that can be used
-		/// to control a single text field on a web page form.
-		/// </summary>
-		/// <param name="id">
-		/// The ID of the text field on the form.
-		/// </param>
-		public virtual ITextField CreateTextField(string id)
-		{
-			return CreateTextField().FromID(id);
-		}
-
-		/// <summary>
 		/// Creates an <see cref="ICreateControl{T}"/> for creating an
 		/// <see cref="ITextField"/> implementation
 		/// </summary>

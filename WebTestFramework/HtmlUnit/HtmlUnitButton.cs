@@ -1,29 +1,20 @@
+using System;
 using com.gargoylesoftware.htmlunit.html;
 
 namespace WebTestFramework.HtmlUnit
 {
 	internal class HtmlUnitButton : IButton
 	{
-		private HtmlUnitDriver _driver;
-		private string _id;
+		private readonly Func<HtmlElement> _getElementFunc;
 
-		public HtmlUnitButton(HtmlUnitDriver driver, string id)
+		public HtmlUnitButton(Func<HtmlElement> getElementFunc)
 		{
-			_driver = driver;
-			_id = id;
-		}
-
-		private HtmlElement Button
-		{
-			get
-			{
-				return _driver.CurrentPage.getElementById(_id);
-			}
+			_getElementFunc = getElementFunc;
 		}
 
 		public void Click()
 		{
-			Button.click();
+			_getElementFunc().click();
 		}
 
 		public void ClickAndWait()

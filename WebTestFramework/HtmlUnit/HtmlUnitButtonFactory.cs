@@ -2,17 +2,14 @@ using System;
 
 namespace WebTestFramework.HtmlUnit
 {
-	internal class HtmlUnitButtonFactory : ICreateControl<IButton>
+	internal class HtmlUnitButtonFactory : HtmlElementFactory, ICreateControl<IButton>
 	{
-		private HtmlUnitDriver _driver;
-		public HtmlUnitButtonFactory(HtmlUnitDriver driver)
-		{
-			_driver = driver;
-		}
+		public HtmlUnitButtonFactory(HtmlUnitDriver driver) : base(driver)
+		{}
 
 		public IButton FromID(string id)
 		{
-			return new HtmlUnitButton(_driver, id);
+			return new HtmlUnitButton(ElementFromID(id));
 		}
 
 		public IButton FromCss(string css)

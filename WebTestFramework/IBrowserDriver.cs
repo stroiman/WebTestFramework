@@ -8,29 +8,10 @@ namespace WebTestFramework
 	public interface IBrowserDriver : IDisposable
 	{
 		/// <summary>
-		/// Creates an <see cref="ITextField"/> implementation that can be used
-		/// to control a single text field on a web page form.
-		/// </summary>
-		/// <param name="id">
-        /// The ID attribute of the text field on the form.
-		/// </param>
-		ITextField CreateTextField(string id);
-
-
-		/// <summary>
 		/// Creates an <see cref="ICreateControl{T}"/> for creating an
 		/// <see cref="ITextField"/> implementation
 		/// </summary>
 		ICreateControl<ITextField> CreateTextField();
-
-        /// <summary>
-        /// Creates an <see cref="IButton"/> implementation that can be used to
-        /// control a single button on a web page.
-        /// </summary>
-        /// <param name="id">
-        /// The ID attribute of the button on the web page.
-        /// </param>
-        IButton CreateButton(string id);
 
 		/// <summary>
 		/// Creates an <see cref="ICreateControl{T}"/> for creating an
