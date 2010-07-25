@@ -21,7 +21,7 @@
 
 		private string GetLocator(string localXPath)
 		{
-			return string.Format("xpath={0}[{1}]{2}", _xpath, _index + 1, localXPath);
+			return string.Format("xpath={0}[{1}]//{2}", _xpath, _index + 1, localXPath);
 		}
 
 		/// <summary>
