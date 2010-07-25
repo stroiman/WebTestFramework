@@ -12,17 +12,22 @@ namespace WebTestFramework.HtmlUnit
 			_getElementFunc = getElementFunc;
 		}
 
-		private HtmlInput TextField
-		{
-			get 
-			{
-				return (HtmlInput)_getElementFunc();
-			}
-		}
-
 		public void Type(string value)
 		{
-			TextField.type(value);
+			var element = _getElementFunc();
+			var textInput = element as HtmlTextInput;
+			if (textInput != null)
+			{
+				textInput.type(value);
+				return;
+			}
+			var textArea = element as HtmlTextArea;
+			if (textArea != null)
+			{
+				textArea.type(value);
+				return;
+			}
+			throw new InvalidOperationException("The element does not accept typing");
 		}
 
 		public void Clear()
@@ -32,7 +37,17 @@ namespace WebTestFramework.HtmlUnit
 
 		public string Text
 		{
-			get { return TextField.getValueAttribute(); }
+			get
+			{
+				var element = _getElementFunc();
+				var textInput = element as HtmlTextInput;
+				if (textInput != null)
+					return textInput.getValueAttribute();
+				var textArea = element as HtmlTextArea;
+				if (textArea != null)
+					return textArea.getText();
+				throw new InvalidOperationException("The element does not accept typing");
+			}
 		}
 	}
 }
