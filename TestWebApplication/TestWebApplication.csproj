@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CookieTestPage.aspx" />
+    <Content Include="ListPage.aspx" />
     <Content Include="PageWithImages.aspx" />
     <Content Include="RedirectToPage1.aspx" />
     <Content Include="TestPage1.aspx" />
@@ -69,6 +70,13 @@
     </Compile>
     <Compile Include="CookieTestPage.aspx.designer.cs">
       <DependentUpon>CookieTestPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListPage.aspx.cs">
+      <DependentUpon>ListPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListPage.aspx.designer.cs">
+      <DependentUpon>ListPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="PageWithImages.aspx.cs">
       <DependentUpon>PageWithImages.aspx</DependentUpon>

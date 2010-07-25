@@ -35,6 +35,11 @@ namespace WebTestFramework.Selenium
 			return CreateControl("name=" + name);
 		}
 
+		public T FromXPath(string xpath)
+		{
+			throw new NotImplementedException();
+		}
+
 		/// <summary>
 		/// Creates a control from a CSS locator
 		/// </summary>

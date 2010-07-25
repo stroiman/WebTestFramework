@@ -80,6 +80,8 @@
     <Compile Include="CookieTest.cs" />
     <Compile Include="CreateButtonTest.cs" />
     <Compile Include="ImageTest.cs" />
+    <Compile Include="ListPage.cs" />
+    <Compile Include="ListTest.cs" />
     <Compile Include="PageTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeleniumButtonTest.cs" />

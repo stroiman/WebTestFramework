@@ -97,7 +97,7 @@ namespace WebTestFramework.HtmlUnit
 
 		public IContainerController<T> CreateArray<T>(string xpathExpression, Func<ICollectionElementDriver, T> createElementFunction)
 		{
-			throw new NotImplementedException();
+			return new HtmlUnitContainerController<T>(this, xpathExpression, createElementFunction);
 		}
 
 		public void Dispose()

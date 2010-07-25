@@ -74,6 +74,8 @@
     <Compile Include="HtmlUnit\HtmlElementFactory.cs" />
     <Compile Include="HtmlUnit\HtmlUnitButton.cs" />
     <Compile Include="HtmlUnit\HtmlUnitButtonFactory.cs" />
+    <Compile Include="HtmlUnit\HtmlUnitCollectionElementDriver.cs" />
+    <Compile Include="HtmlUnit\HtmlUnitContainerController.cs" />
     <Compile Include="HtmlUnit\HtmlUnitDriver.cs" />
     <Compile Include="HtmlUnit\HtmlUnitTextField.cs" />
     <Compile Include="HtmlUnit\TextFieldFactory.cs" />

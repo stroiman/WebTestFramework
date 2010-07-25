@@ -21,5 +21,10 @@ namespace WebTestFramework.HtmlUnit
 		{
 			throw new NotImplementedException();
 		}
+
+		public IButton FromXPath(string xpath)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
