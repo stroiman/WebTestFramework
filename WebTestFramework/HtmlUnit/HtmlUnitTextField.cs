@@ -15,7 +15,7 @@ namespace WebTestFramework.HtmlUnit
 		public void Type(string value)
 		{
 			var element = _getElementFunc();
-			var textInput = element as HtmlTextInput;
+			var textInput = element as HtmlInput;
 			if (textInput != null)
 			{
 				textInput.type(value);
