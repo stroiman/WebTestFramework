@@ -63,7 +63,8 @@ namespace WebTestFramework.HtmlUnit
 
 		public string GetCookie(string cookieName)
 		{
-			return _htmlUnit.getCookieManager().getCookie(cookieName).getValue();
+			var cookie = _htmlUnit.getCookieManager().getCookie(cookieName);
+			return cookie == null ? null : cookie.getValue();
 		}
 
 		public string GetCurrentRelativeUrl()
