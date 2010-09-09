@@ -15,9 +15,12 @@ namespace WebTestFramework.HtmlUnit
 		public void Type(string value)
 		{
 			var element = _getElementFunc();
+			if (element == null)
+				throw new ApplicationException("Cannot find an input element");
 			var textInput = element as HtmlInput;
 			if (textInput != null)
 			{
+				textInput.setValueAttribute("");
 				textInput.type(value);
 				return;
 			}
