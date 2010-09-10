@@ -93,7 +93,9 @@ namespace WebTestFramework.HtmlUnit
 
 		public bool IsTextPresent(string text)
 		{
-			throw new NotImplementedException();
+			var actualText = CurrentPage.asText().ToLowerInvariant();
+			var expectedText = text.ToLowerInvariant();
+			return actualText.Contains(expectedText);
 		}
 
 		public IContainerController<T> CreateArray<T>(string xpathExpression, Func<ICollectionElementDriver, T> createElementFunction)
