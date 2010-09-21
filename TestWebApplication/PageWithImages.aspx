@@ -9,8 +9,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
-		<image id="imageWithAbsolutePath" src="/image.jpg" />
-		<image id="imageWithRelativePath" src="image.jpg" />    
+		<img id="imageWithAbsolutePath" src="/image.jpg" />
+		<img id="imageWithRelativePath" src="image.jpg" />    
     </div>
     </form>
 </body>

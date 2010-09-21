@@ -90,14 +90,5 @@ namespace WebTestFramework.UnitTest
 			var button = _driver.CreateButton().FromName("locator");
 			AssertLocatorIs(button, "name=locator");
 		}
-
-		[Test]
-		public void CreateFromCss()
-		{
-			const string cssSelector = "li:last-child input[name='test']";
-			const string expectedLocator = "css=" + cssSelector;
-			var button = _driver.CreateButton().FromCss(cssSelector);
-			AssertLocatorIs(button, expectedLocator);
-		}
 	}
 }

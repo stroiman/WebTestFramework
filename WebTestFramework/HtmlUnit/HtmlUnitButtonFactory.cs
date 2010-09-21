@@ -12,11 +12,6 @@ namespace WebTestFramework.HtmlUnit
 			return new HtmlUnitButton(ElementFromID(id));
 		}
 
-		public IButton FromCss(string css)
-		{
-			throw new NotImplementedException();
-		}
-
 		public IButton FromName(string name)
 		{
 			throw new NotImplementedException();

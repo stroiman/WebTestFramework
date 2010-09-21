@@ -14,13 +14,11 @@ namespace WebTestFramework.HtmlUnit
 
 		public void Type(string value)
 		{
-			var element = _getElementFunc();
-			if (element == null)
-				throw new ApplicationException("Cannot find an input element");
-			var textInput = element as HtmlInput;
+			var element = GetElement();
+            Clear();
+		    var textInput = element as HtmlInput;
 			if (textInput != null)
 			{
-				textInput.setValueAttribute("");
 				textInput.type(value);
 				return;
 			}
@@ -33,9 +31,30 @@ namespace WebTestFramework.HtmlUnit
 			throw new InvalidOperationException("The element does not accept typing");
 		}
 
-		public void Clear()
+	    private HtmlElement GetElement()
+	    {
+	        var element = _getElementFunc();
+	        if (element == null)
+	            throw new ApplicationException("Cannot find an input element");
+	        return element;
+	    }
+
+	    public void Clear()
 		{
-			throw new NotImplementedException();
+            var element = GetElement();
+            var textInput = element as HtmlInput;
+            if (textInput != null)
+            {
+                textInput.setValueAttribute("");
+                return;
+            }
+            var textArea = element as HtmlTextArea;
+            if (textArea != null)
+            {
+                textArea.setText("");
+                return;
+            }
+            throw new InvalidOperationException("The element does not accept typing");
 		}
 
 		public string Text
