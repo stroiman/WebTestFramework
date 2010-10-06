@@ -77,9 +77,18 @@ namespace WebTestFramework.Selenium
         /// or passed to the <see cref="Create"/> function
         /// </summary>
         /// <param name="relativeUrl"></param>
-		public void Open(string relativeUrl)
+		public virtual void Open(string relativeUrl)
 		{
-			_selenium.Open(relativeUrl);
+            try
+            {
+                _selenium.Open(relativeUrl);
+            }
+            catch (SeleniumException ex)
+            {
+                var message = ex.ToString();
+                if (message == null || !message.Contains("XHR ERROR"))
+                    throw;
+            }
 		}
 
 		/// <summary>
