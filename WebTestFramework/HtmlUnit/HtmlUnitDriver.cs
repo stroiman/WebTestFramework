@@ -50,7 +50,7 @@ namespace WebTestFramework.HtmlUnit
 
 		public ICreateControl<IImage> CreateImage()
 		{
-			throw new NotImplementedException();
+            return new HtmlElementFactory<IImage>(this, x => new HtmlUnitImage(x));
 		}
 
 		public void Open(string relativeUrl)

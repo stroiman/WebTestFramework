@@ -32,12 +32,5 @@ namespace WebTestFramework.UnitTest
 			var button = Driver.CreateButton().FromID("UpdateButton");
 			button.ClickAndWait();
 		}
-
-		[Test]
-		public void CreateButtonFromCss()
-		{
-			var button = Driver.CreateButton().FromCss("input[@type='submit']");
-			button.ClickAndWait();
-		}
 	}
 }

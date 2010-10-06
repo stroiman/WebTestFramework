@@ -22,13 +22,15 @@ namespace WebTestFramework.UnitTest
 		public void CheckUrlOfImageWithAbsolutePath()
 		{
 			var image = _page.ImageWithAbsolutePath;
+            Assert.That(image.Src, Is.EqualTo("/image.jpg"));
 			Assert.That(image.LocalSrc, Is.EqualTo("/image.jpg"));
 		}
 
 		[Test]
 		public void CheckUrlOfImageWithRelativePath()
 		{
-			var image = _page.ImageWithAbsolutePath;
+			var image = _page.ImageWithRelativePath;
+            Assert.That(image.Src, Is.EqualTo("image.jpg"));
 			Assert.That(image.LocalSrc, Is.EqualTo("/image.jpg"));
 		}
 	}

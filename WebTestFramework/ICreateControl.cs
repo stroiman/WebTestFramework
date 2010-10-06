@@ -16,15 +16,6 @@
 
 		/// <summary>
 		/// Creates an instance of <typeparamref name="T"/> for representing a
-		/// specific element that can be located by a specific CSS locator.
-		/// </summary>
-		/// <param name="css">
-		/// The CSS locator for the element.
-		/// </param>
-		T FromCss(string css);
-
-		/// <summary>
-		/// Creates an instance of <typeparamref name="T"/> for representing a
 		/// specific element with a specific name attribute
 		/// </summary>
 		/// <param name="name">
