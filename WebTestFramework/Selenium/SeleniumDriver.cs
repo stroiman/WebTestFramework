@@ -89,6 +89,7 @@ namespace WebTestFramework.Selenium
                 if (message == null || !message.Contains("XHR ERROR"))
                     throw;
             }
+            _selenium.WaitForPageToLoad(DefaultTimeout.ToString());
 		}
 
 		/// <summary>
